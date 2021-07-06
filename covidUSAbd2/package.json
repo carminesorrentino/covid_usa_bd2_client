@@ -21,6 +21,8 @@
     "@angular/router": "~11.2.13",
     "@popperjs/core": "^2.9.2",
     "bootstrap": "^5.0.2",
+    "devextreme": "21.1.4",
+    "devextreme-angular": "21.1.4",
     "font-awesome": "^4.7.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
