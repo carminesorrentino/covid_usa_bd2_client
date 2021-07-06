@@ -1,0 +1,17 @@
+<!-- dx-data-grid contiene [dataSource] = array dati da visualizzare-->
+<dx-data-grid id="gridContainer" [dataSource] = "data" [showBorders] = "true">
+
+    <!-- Filtro per la visualizzazione delle informazioni nelle varie colonne -->
+    <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+    <!-- dxi-clumn specifica i campi dell'oggetto da mostrare in [dataField] e come rinominare la colonna [dataType]-->
+    <dxi-column dataField="nome" dataType="Nome"></dxi-column>
+    <dxi-column dataField="cognome" dataType="Cognome"></dxi-column>
+
+    <!-- dxo-pager mostra un selettore sulla parte sinistra della griglia [showPageSizeSelector] e permette di scegliere la size di elementi da visualizzare per pagina [allowedPageSizes]-->
+    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[1,2,4,10]"></dxo-pager>
+
+    <!-- dxo-paging= "dataItem da visualizzare per pagina (se entrano tutti nella stessa pagina il comando scompare", si trova sotto la griglia a destra-->
+    <dxo-paging [pageSize]=2></dxo-paging>
+
+</dx-data-grid>

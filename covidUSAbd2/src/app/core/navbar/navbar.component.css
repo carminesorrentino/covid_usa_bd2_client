@@ -1,0 +1,17 @@
+/* Menu items*/
+.nav-item{    
+    margin-right: 4em;
+}
+
+/* Elementi menù collapse */
+
+.menu_item_collapse{
+    color: darkgray;
+}
+
+.menu_item_collapse:hover{
+    color: #C8C8C9;
+    background-color: #252525;
+}
+
+/* Fine Elementi menù collapse */
