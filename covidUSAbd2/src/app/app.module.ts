@@ -6,6 +6,10 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { FeaturesModule } from './features/features.module';
 import { SharedModule } from './shared/shared.module';
+import { InputsModule } from '@progress/kendo-angular-inputs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 @NgModule({
   declarations: [
@@ -16,7 +20,9 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     FeaturesModule,
     SharedModule,
-    CoreModule
+    CoreModule,
+    InputsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
