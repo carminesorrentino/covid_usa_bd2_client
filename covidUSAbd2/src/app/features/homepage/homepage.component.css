@@ -107,3 +107,8 @@
   .rangeQualityAir{
       width: 20em;
   }
+
+  /*Gestione toolbar*/
+  .pagination{
+    cursor: pointer;
+  }

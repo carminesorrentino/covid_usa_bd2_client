@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomepageComponent implements OnInit {
 
-  pagination : string = 'Account'; /*Nome del pagination attivo*/
+  pagination : string = 'Covid-19'; /*Nome del pagination attivo*/
 
   constructor() { }
 
