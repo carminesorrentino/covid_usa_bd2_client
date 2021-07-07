@@ -86,11 +86,55 @@
     <div class="row justify-content-md-start">
 
         <!-- PROIEZIONI -->
-        <div class="proiezioni col col-lg-4 mt-4">
+        <div class="proiezioni col col-lg-2 mt-4">
             <div class="titoloSezione">
                 Proiezioni
             </div>
             <app-proiezioni></app-proiezioni>
+
+            <div class="titoloSezione mt-5">
+                Effettua una ricerca in base a:
+            </div>
+            
+            <div class="row mt-2">
+
+                <!-- Default radio -->
+                <div class="form-check">
+                    <input
+                    class="form-check-input"
+                    type="radio"
+                    name="flexRadioDefault"
+                    id="flexRadioDefault1"
+                    checked = true 
+                    />
+                    <label class="form-check-label" for="flexRadioDefault1"> Stato </label>
+                </div>
+
+                <!-- Default radio -->
+                <div class="form-check">
+                    <input
+                    class="form-check-input"
+                    type="radio"
+                    name="flexRadioDefault"
+                    id="flexRadioDefault1"
+                    />
+                    <label class="form-check-label" for="flexRadioDefault1"> Contea </label>
+                </div>
+
+                <!-- Default radio -->
+                <div class="form-check">
+                    <input
+                    class="form-check-input"
+                    type="radio"
+                    name="flexRadioDefault"
+                    id="flexRadioDefault1"
+                    />
+                    <label class="form-check-label" for="flexRadioDefault1"> Città </label>
+                </div>
+
+            </div>
+
+
         </div>
 
             <!-- Data inizio ricerca (primo calendario) -->
@@ -190,63 +234,8 @@
                     </div>
         </div>
 
-    </div>
 
-
-    <div class="row justify-content-md-start">
-        
-        <!-- CONDIZIONI -->
-        <div class="condizioni col col-lg-4 mt-4">
-        
-            <div class="titoloSezione">
-                Condizioni
-            </div>
-
-                <div class="titoloSezione">
-                    Effettua una ricerca in base a:
-                </div>
-                
-                <div class="row mt-2">
-
-                    <!-- Default radio -->
-                    <div class="form-check">
-                        <input
-                        class="form-check-input"
-                        type="radio"
-                        name="flexRadioDefault"
-                        id="flexRadioDefault1"
-                        checked = true 
-                        />
-                        <label class="form-check-label" for="flexRadioDefault1"> Stato </label>
-                    </div>
-
-                    <!-- Default radio -->
-                    <div class="form-check">
-                        <input
-                        class="form-check-input"
-                        type="radio"
-                        name="flexRadioDefault"
-                        id="flexRadioDefault1"
-                        />
-                        <label class="form-check-label" for="flexRadioDefault1"> Contea </label>
-                    </div>
-
-                    <!-- Default radio -->
-                    <div class="form-check">
-                        <input
-                        class="form-check-input"
-                        type="radio"
-                        name="flexRadioDefault"
-                        id="flexRadioDefault1"
-                        />
-                        <label class="form-check-label" for="flexRadioDefault1"> Città </label>
-                    </div>
-
-
-            </div>
-        
-        </div>
-
+        <!-- PROVA FORSE DA CANCELLARE -->
         <!-- SPECIALIZZAZIONI -->
         <div class="specializzazioni col-md-auto mt-4">
             
@@ -324,24 +313,23 @@
             <div class="form-row">
                 <div class="form-row">
                 <div class="mb-3">
-                    <label for="validationServer03">Tipo di Lockdown</label>
+                    <label  for="validationServer03"><strong>Tipo di Lockdown</strong></label>
                     <select class="form-select" aria-label="Default select example" id="provincia" required>
-                    <option value="Stay at home" selected>Stay at home</option>
-                    <option value="2">ds</option>
-                    <option value="3">ds</option>
+                    <option value="Stay at home" selected>Stay at home (Rimani a casa)</option>
+                    <option value="Shelter in place">Shelter in place (Spostamenti consentiti solo sul posto)</option>
+                    <option value="Curfew">Curfew (Coprifuoco)</option>
                     </select>
                 </div>
                 </div>
             </div>
-
-        </div>
+        </div>        
 
     </div>  <!-- FINE BODY FORM QUERY -->
 
     <!-- SUBMIT FORM QUERIES -->
     <div class="d-grid gap-2 col-6 mx-auto mt-4 mb-4">
         <button class="btn btn-success" type="button">Invia query</button>
-      </div>
+    </div>
 
   </form>
     
