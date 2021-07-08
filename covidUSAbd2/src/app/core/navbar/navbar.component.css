@@ -3,6 +3,11 @@
     margin-right: 4em;
 }
 
+/*Item barra di ricerca*/
+.nav-link{
+    cursor: pointer;
+}
+
 /* Elementi menù collapse */
 
 .menu_item_collapse{

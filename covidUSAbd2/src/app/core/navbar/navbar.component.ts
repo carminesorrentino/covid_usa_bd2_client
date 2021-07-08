@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MainService } from 'src/app/services/main.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  pagination : string = 'Covid-19: cases and deaths'
+
+  constructor(public service : MainService) { }
 
   ngOnInit(): void {
+  }
+
+  currentPage(pagination : string){
+    console.log(pagination);
+    this.pagination = pagination;
   }
 
 }

@@ -14,10 +14,25 @@
   
         <!-- Menu items -->
         <ul class="navbar-nav">
-  
-          <!-- Home -->
+
+          <!-- Covid-19: cases and deaths -->
           <li class="nav-item">
-            <a class="nav-link" href="./homepage">USA Lockdown, Covid-19 & Air Quality - Basi di Dati II a.a. 2020-2021</a>
+            <a class="nav-link" (click)="currentPage('Covid-19: cases and deaths')">Covid-19: cases and deaths</a>
+          </li>
+
+          <!-- Lockdown -->
+          <li class="nav-item">
+            <a class="nav-link" (click)="currentPage('Lockdown')">Lockdown</a>
+          </li>
+
+          <!-- Air Quality -->
+          <li class="nav-item">
+            <a class="nav-link" (click)="currentPage('Air quality')">Air quality</a>
+          </li>
+
+          <!-- Integration -->
+          <li class="nav-item">
+            <a class="nav-link" (click)="currentPage('Integration')">Integration</a>
           </li>
   
         </ul>

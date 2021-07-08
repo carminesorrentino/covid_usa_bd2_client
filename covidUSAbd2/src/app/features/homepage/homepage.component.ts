@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Proiezione } from 'src/app/interface/proiezioni';
+import { MainService } from 'src/app/services/main.service';
 
 @Component({
   selector: 'app-homepage',
@@ -9,24 +10,39 @@ import { Proiezione } from 'src/app/interface/proiezioni';
 })
 export class HomepageComponent implements OnInit {
 
-  pagination : string = 'Covid-19'; /*Nome del pagination attivo*/
+  pagination : string; /*Nome del pagination attivo*/
   
   projMap = new Map(); /*valori relativi alle proiezioni*/
 
   selectedItem : string = 'Stato'; //valore di default
 
-
-  constructor() { }
-
-  ngOnInit(): void {}
-
-  /*La variabile pagination assume il nome (Anagrafica, Provenienza) in base alla pagina attiva*/
-  changePage($event, name : string){
-
-    console.log(name);
-
-    this.pagination = name;  //(Anagrafica, Provenienza)
+  constructor(public service : MainService) { 
+    console.log('service', service.pagination)
+    this.pagination = service.pagination;
+    console.log('pagination homepage', this.pagination)
   }
+
+  ngOnInit(): void { }
+
+  getProiezioni(proj : Map<string,Proiezione>){
+    this.projMap = proj;
+    console.log('Map Checkbox in Homepage [getProiezioni(proj)]',this.projMap)
+  }
+
+  getCondizione(selectedItem : string){
+    this.selectedItem = selectedItem;
+    console.log('Stringa Radio button in Homepage [getCondizione(selectedItem)]', this.selectedItem)
+  }
+
+  /*La variabile pagination assume il nome (Covid-19: cases and deaths, Lockdown, Air Quality, Integration) in base alla pagina attiva*/
+  changePage(name : string){
+
+    console.log("toolbar name",name);
+
+    this.pagination = name;  //(Covid-19: cases and deaths, Lockdown, Air Quality, Integration)
+
+  }
+
 
   /*Calendario*/
   public isMeeting(date: Date) {
@@ -47,14 +63,6 @@ export class HomepageComponent implements OnInit {
     console.log('lo forme', form.form.value)
   }
 
-  getProiezioni(proj : Map<string,Proiezione>){
-    this.projMap = proj;
-    console.log('Map Checkbox in Homepage [getProiezioni(proj)]',this.projMap)
-  }
-
-  getCondizione(selectedItem : string){
-    this.selectedItem = selectedItem;
-    console.log('Stringa Radio button in Homepage [getCondizione(selectedItem)]', this.selectedItem)
-  }
+ 
 
 }

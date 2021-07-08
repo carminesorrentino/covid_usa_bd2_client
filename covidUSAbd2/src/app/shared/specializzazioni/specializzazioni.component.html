@@ -1,0 +1,105 @@
+
+<div 
+    [ngClass] = "{
+        'nascondi_AirQuality' : pagination !== 'Air quality',
+        'mostra_AirQuality' : pagination == 'Air quality'
+    }"
+>
+    <!-- RANGE QUALITA' DELL'ARIA-->
+    <label class="form-label" for="customRange1"><strong>Qualità dell'aria</strong></label>
+
+    <div class="row">
+        <div class="col-6">
+            <div class="mb-3 form">
+                <label for="validationServerUsername">Minore di...</label>
+                <div class="input-group">
+                <input type="number" class="form-control" id="airQualityMin" placeholder="0" aria-describedby="inputGroupPrepend3">
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="mb-3 form">
+                <label for="validationServerUsername">Maggiore di...</label>
+                <div class="input-group">
+                <input type="number" class="form-control" id="airQualityMax" placeholder="0" aria-describedby="inputGroupPrepend3">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div
+[ngClass] = "{
+    'nascondi_CasiCovid' : pagination !== 'Covid-19: cases and deaths',
+    'mostra_CasiCovid' : pagination == 'Covid-19: cases and deaths'
+}"
+>
+    <!-- CASI COVID-19-->
+    <label class="form-label" for="customRange1"><strong>Casi Covid-19</strong></label>
+
+    <div class="row">
+        <div class="col-6">
+            <div class="mb-3 form">
+                <label for="validationServerUsername">Minore di...</label>
+                <div class="input-group">
+                <input type="number" class="form-control" id="casiMin" placeholder="0" aria-describedby="inputGroupPrepend3">
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="mb-3 form">
+                <label for="validationServerUsername">Maggiore di...</label>
+                <div class="input-group">
+                <input type="number" class="form-control" id="casiMax" placeholder="0" aria-describedby="inputGroupPrepend3">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MORTI COVID-19-->
+    <label class="form-label" for="customRange1"><strong>Morti Covid-19</strong></label>
+        <div class="row">
+            <div class="col-6">
+                <div class="mb-3 form">
+                    <label for="validationServerUsername">Minore di...</label>
+                    <div class="input-group">
+                    <input type="number" class="form-control" id="mortiMin" placeholder="0" aria-describedby="inputGroupPrepend3">
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="mb-3 form">
+                    <label for="validationServerUsername">Maggiore di...</label>
+                    <div class="input-group">
+                    <input type="number" class="form-control" id="mortiMax" placeholder="0" aria-describedby="inputGroupPrepend3">
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+<div
+[ngClass] = "{
+    'nascondi_TipoLockdown' : pagination !== 'Lockdown',
+    'mostra_TipoLockdown' : pagination == 'Lockdown'
+}"
+>
+
+    <!-- Tipo di Lockdown -->
+    <div class="form-row">
+        <div class="form-row">
+        <div class="mb-3">
+            <label  for="validationServer03"><strong>Tipo di Lockdown</strong></label>
+            <select class="form-select" aria-label="Default select example" id="provincia" required>
+            <option value="Stay at home" selected>Stay at home (Rimani a casa)</option>
+            <option value="Shelter in place">Shelter in place (Spostamenti consentiti solo sul posto)</option>
+            <option value="Curfew">Curfew (Coprifuoco)</option>
+            </select>
+        </div>
+        </div>
+    </div>
+
+</div>

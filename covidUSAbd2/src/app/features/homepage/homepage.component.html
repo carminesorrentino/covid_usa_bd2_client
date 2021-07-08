@@ -1,83 +1,11 @@
+<!--
 <div class="m-4">
     <hr>
     <a href="gridExample">grid example</a>
     <hr>
     <a href="chartExample">chart example</a>
 </div>
-
-<hr>
-<hr>
-
-<div class="row justify-content-md-center">
-    <div class="col col-lg-2">
-      <!-- 1 of 3 / PRIMA COLONNA TEXT AREA -->
-    </div>
-
-    <!-- 2 of 3 / SECONDA COLONNA TEXT AREA (CONTENUTO) -->
-    <div class="col-md-18">
-      
-      <!-- Pagination items -->
-      <ul class="nav nav-tabs nav-fill m-3" id="ex1" role="tablist">
-        <li class="nav-item pagination" role="presentation">
-          <a
-            class="nav-link active"
-            id="ex2-tab-1"
-            data-bs-toggle="tab"
-            role="tab"
-            aria-controls="ex2-tabs-1"
-            aria-selected="true"
-            (click)="this.changePage($event, 'Account')"
-            >Covid-19: cases and deaths</a
-          >
-        </li>
-        <li class="nav-item pagination" role="presentation">
-          <a
-            class="nav-link"
-            id="ex2-tab-2"
-            data-bs-toggle="tab"
-            role="tab"
-            aria-controls="ex2-tabs-2"
-            aria-selected="false"
-            (click)="this.changePage($event, 'Provenienza')"
-            >Lockdown</a
-          >
-        </li>
-        <li class="nav-item pagination" role="presentation">
-            <a
-              class="nav-link"
-              id="ex2-tab-2"
-              data-bs-toggle="tab"
-              role="tab"
-              aria-controls="ex2-tabs-2"
-              aria-selected="false"
-              (click)="this.changePage($event, 'Provenienza')"
-              >Air quality</a
-            >
-          </li>
-          <li class="nav-item pagination" role="presentation">
-            <a
-              class="nav-link"
-              id="ex2-tab-2"
-              data-bs-toggle="tab"
-              role="tab"
-              aria-controls="ex2-tabs-2"
-              aria-selected="false"
-              (click)="this.changePage($event, 'Provenienza')"
-              >Integration</a
-            >
-          </li>
-      </ul>
-      <!-- Fine Pagination items-->
-
-      </div>
-
-      <div class="col col-lg-2">
-        <!-- 3 of 3 / PRIMA COLONNA TEXT AREA -->
-      </div>
-
-</div>
-
-<hr>
+-->
 
 <div class="bodyFormQuery">
 
@@ -201,8 +129,6 @@
                     </div>
         </div>
 
-
-        <!-- PROVA FORSE DA CANCELLARE -->
         <!-- SPECIALIZZAZIONI -->
         <div class="specializzazioni col-md-auto mt-4">
             
@@ -210,85 +136,7 @@
                 Specializzazioni
             </div>
 
-            <!-- RANGE QUALITA' DELL'ARIA-->
-            <label class="form-label" for="customRange1"><strong>Qualità dell'aria</strong></label>
-
-            <div class="row">
-                <div class="col-6">
-                    <div class="mb-3 form">
-                        <label for="validationServerUsername">Minore di...</label>
-                        <div class="input-group">
-                        <input type="number" class="form-control" id="airQualityMin" placeholder="0" aria-describedby="inputGroupPrepend3">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="mb-3 form">
-                        <label for="validationServerUsername">Maggiore di...</label>
-                        <div class="input-group">
-                        <input type="number" class="form-control" id="airQualityMax" placeholder="0" aria-describedby="inputGroupPrepend3">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CASI COVID-19-->
-            <label class="form-label" for="customRange1"><strong>Casi Covid-19</strong></label>
-
-            <div class="row">
-                <div class="col-6">
-                    <div class="mb-3 form">
-                        <label for="validationServerUsername">Minore di...</label>
-                        <div class="input-group">
-                        <input type="number" class="form-control" id="casiMin" placeholder="0" aria-describedby="inputGroupPrepend3">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="mb-3 form">
-                        <label for="validationServerUsername">Maggiore di...</label>
-                        <div class="input-group">
-                        <input type="number" class="form-control" id="casiMax" placeholder="0" aria-describedby="inputGroupPrepend3">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- MORTI COVID-19-->
-            <label class="form-label" for="customRange1"><strong>Morti Covid-19</strong></label>
-
-            <div class="row">
-                <div class="col-6">
-                    <div class="mb-3 form">
-                        <label for="validationServerUsername">Minore di...</label>
-                        <div class="input-group">
-                        <input type="number" class="form-control" id="mortiMin" placeholder="0" aria-describedby="inputGroupPrepend3">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="mb-3 form">
-                        <label for="validationServerUsername">Maggiore di...</label>
-                        <div class="input-group">
-                        <input type="number" class="form-control" id="mortiMax" placeholder="0" aria-describedby="inputGroupPrepend3">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tipo di Lockdown -->
-            <div class="form-row">
-                <div class="form-row">
-                <div class="mb-3">
-                    <label  for="validationServer03"><strong>Tipo di Lockdown</strong></label>
-                    <select class="form-select" aria-label="Default select example" id="provincia" required>
-                    <option value="Stay at home" selected>Stay at home (Rimani a casa)</option>
-                    <option value="Shelter in place">Shelter in place (Spostamenti consentiti solo sul posto)</option>
-                    <option value="Curfew">Curfew (Coprifuoco)</option>
-                    </select>
-                </div>
-                </div>
-            </div>
+            <app-specializzazioni [pagination]="this.pagination"></app-specializzazioni>
         </div>        
 
     </div>  <!-- FINE BODY FORM QUERY -->

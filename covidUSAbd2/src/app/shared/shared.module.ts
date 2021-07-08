@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { ProiezioniComponent } from './proiezioni/proiezioni.component';
 import { FormsModule } from '@angular/forms';
 import { CondizioniComponent } from './condizioni/condizioni.component';
+import { SpecializzazioniComponent } from './specializzazioni/specializzazioni.component';
 
 
 
 @NgModule({
   declarations: [
     ProiezioniComponent,
-    CondizioniComponent
+    CondizioniComponent,
+    SpecializzazioniComponent
   ],
   imports: [
     CommonModule,
@@ -17,7 +19,8 @@ import { CondizioniComponent } from './condizioni/condizioni.component';
   ],
   exports: [
     ProiezioniComponent,
-    CondizioniComponent
+    CondizioniComponent,
+    SpecializzazioniComponent
   ]
 })
 export class SharedModule { }

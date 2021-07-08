@@ -50,25 +50,6 @@
     text-align: right;
 }
 
-/*Gestione ngClass del Tab per (Anagrafica, Provenienza)*/
-.mostra_Anagrafica{
-    display: block;
-}
-.mostra_Anagrafica{
-    display: block;
-}
-.nascondi_Anagrafica{
-    display: none;
-}
-.nascondi_Provenienza{
-    display: none;
-}
-/*Fine ngClass del Tab per (Anagrafica, Provenienza)*/
-
-
-
-
-
 /*Calendario*/
 .meeting {
     position: relative;
