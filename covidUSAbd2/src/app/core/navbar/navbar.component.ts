@@ -13,11 +13,14 @@ export class NavbarComponent implements OnInit {
   constructor(public service : MainService) { }
 
   ngOnInit(): void {
+    this.service.setPagination(this.pagination);
   }
 
   currentPage(pagination : string){
     console.log(pagination);
     this.pagination = pagination;
+    this.service.setPagination(pagination);
+
   }
 
 }

@@ -17,12 +17,13 @@ export class HomepageComponent implements OnInit {
   selectedItem : string = 'Stato'; //valore di default
 
   constructor(public service : MainService) { 
-    console.log('service', service.pagination)
-    this.pagination = service.pagination;
     console.log('pagination homepage', this.pagination)
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    this.service.item$.subscribe(pagination => this.pagination = pagination);
+    console.log('onInit', this.pagination)
+  }
 
   getProiezioni(proj : Map<string,Proiezione>){
     this.projMap = proj;
