@@ -19,8 +19,8 @@ export class NavbarComponent implements OnInit {
   currentPage(pagination : string){
     console.log(pagination);
     this.pagination = pagination;
-    this.service.setPagination(pagination);
-
+    this.service.setPagination(pagination);  /*Invoca il metodo nel service per aggiornare 
+                                                il valore della pagina corrente*/
   }
 
 }

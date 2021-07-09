@@ -21,7 +21,12 @@ export class HomepageComponent implements OnInit {
   }
 
   ngOnInit(): void { 
-    this.service.item$.subscribe(pagination => this.pagination = pagination);
+
+    /*Subscribe all'Observable item$ per aggiornare il valore di pagination*/
+    this.service.item$.subscribe(nuovaPage => 
+      this.pagination = nuovaPage
+    );
+
     console.log('onInit', this.pagination)
   }
 
@@ -61,7 +66,7 @@ export class HomepageComponent implements OnInit {
 
 
   submitForm(form : NgForm){
-    console.log('lo forme', form.form.value)
+    console.log('lo forme', form)
   }
 
  

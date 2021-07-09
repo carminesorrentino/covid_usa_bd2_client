@@ -1,34 +1,13 @@
-.mostra_AirQuality{
+.mostra{
     display: block;
 }
 
-.nascondi_AirQuality{
+.nascondi{
     display: none
 }
 
-.mostra_TipoLockdown{
+.mostraInt{
     display: block;
 }
-
-.nascondi_TipoLockdown{
-    display: none;
-}
-
-.mostra_CasiCovid{
-    display: block;
-}
-
-.nascondi_CasiCovid{
-    display: none;
-}
-
-.mostra_MortiCovid{
-    display: block;
-}
-
-.nascondi_MortiCovid{
-    display: none;
-}
-
 
 
