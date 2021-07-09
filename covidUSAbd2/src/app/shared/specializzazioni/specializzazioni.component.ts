@@ -12,19 +12,10 @@ export class SpecializzazioniComponent implements OnInit, OnChanges {
   @Input() pagination : string;
   
   //genera evento per notificare HomepageComponent
-  @Output() proiezioniHandler : EventEmitter<Integration> = new EventEmitter(); 
+  @Output() specializzazioniHandler : EventEmitter<Integration> = new EventEmitter(); 
 
   //Restituisce un oggetti Integration con tutti i campi
   integration : Integration;
-
-  //Valori da restituire
-  airQualityMin : number = 0;
-  airQualityMax : number = 0;
-  casiMin : number = 0;
-  casiMax : number = 0;
-  mortiMin : number = 0;
-  mortiMax : number = 0;
-  tipoLockdown : string = 'Stay at home';
 
   constructor(public service : MainService) { }
 
@@ -77,6 +68,8 @@ export class SpecializzazioniComponent implements OnInit, OnChanges {
     //console.log('specializzazioni id', $event.srcElement.id)
     //console.log('specializzaioni values',$event.srcElement.value);
     console.log('integration', this.integration)
+
+    this.specializzazioniHandler.emit(this.integration);
 
   }
 

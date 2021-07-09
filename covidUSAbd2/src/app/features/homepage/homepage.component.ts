@@ -1,5 +1,6 @@
 import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Integration } from 'src/app/interface/integration';
 import { Proiezione } from 'src/app/interface/proiezioni';
 import { MainService } from 'src/app/services/main.service';
 
@@ -15,6 +16,8 @@ export class HomepageComponent implements OnInit {
   projMap = new Map(); /*valori relativi alle proiezioni*/
 
   selectedItem : string = 'Stato'; //valore di default
+
+  specializzazioni : Integration;
 
   constructor(public service : MainService) { 
     console.log('pagination homepage', this.pagination)
@@ -38,6 +41,12 @@ export class HomepageComponent implements OnInit {
   getCondizione(selectedItem : string){
     this.selectedItem = selectedItem;
     console.log('Stringa Radio button in Homepage [getCondizione(selectedItem)]', this.selectedItem)
+  }
+
+  getSpecializzazioni(specializzazione : Integration){
+    this.specializzazioni = specializzazione;
+
+    console.log('Homepage specializzazione value', this.specializzazioni)
   }
 
   /*La variabile pagination assume il nome (Covid-19: cases and deaths, Lockdown, Air Quality, Integration) in base alla pagina attiva*/
