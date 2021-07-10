@@ -40,44 +40,21 @@
                 </div>
 
 
-                <kendo-calendar [weekNumber]="false">
-                    <ng-template kendoCalendarMonthCellTemplate let-date>
-                        <span [ngClass]="isMeeting(date)">{{date.getDate()}}</span>
-                    </ng-template>
-                    <ng-template kendoCalendarYearCellTemplate let-context="cellContext">
-                        <span [ngClass]="isYearMeeting(context.value)">{{context.formattedValue}}</span>
-                    </ng-template>
-                    <ng-template kendoCalendarDecadeCellTemplate let-context="cellContext">
-                        <span [ngClass]="isDecadeMeeting(context.value)">{{context.formattedValue}}</span>
-                    </ng-template>
-                    <ng-template kendoCalendarCenturyCellTemplate let-context="cellContext">
-                        <span [ngClass]="isCenturyMeeting(context.value)">{{context.formattedValue}}</span>
-                    </ng-template>
-                    
-                    <!--Numero della settimana-->
-                    <!--<ng-template kendoCalendarWeekNumberCellTemplate let-context="cellContext">
-                        <span class="weeknumber-cell">{{context.formattedValue}}</span>
-                    </ng-template>-->
-
-                    <!-- Titolo (es: July 2021)-->
-                    <ng-template kendoCalendarHeaderTitleTemplate let-title>
-                        {{title}}
-                    </ng-template>
-                    <ng-template kendoCalendarNavigationItemTemplate let-title let-date="date" let-view="activeView">
-                        {{view === 'month' && date.getMonth() === 0 ? 'Jan' : title}}
-                    </ng-template>
+                <kendo-calendar [weekNumber]="false" (valueChange)="getDataInizio($event)">
+                    <app-calendar></app-calendar>
                 </kendo-calendar>
 
                 <div class="mt-2">
 
                     <div class="row">
-                        <div class="col-md-8">Data selezionata: ****</div>
+                        <div class="col-md-8 labelData">Data selezionata: {{this.dataInizioView || ''}}</div>
                         <div class="col-6 col-md-4">
-                            <a class="link-danger rimuoviData"><i class="fa fa-times"></i></a>
+                            <a class="link-danger rimuoviData" (click)="resetDate('inizio')"><i class="fa fa-times"></i></a>
                         </div>
                     </div>
                 
                 </div>
+
 
             </div>
 
@@ -89,40 +66,16 @@
                 </div>
 
 
-                    <kendo-calendar [weekNumber]="false">
-                        <ng-template kendoCalendarMonthCellTemplate let-date>
-                            <span [ngClass]="isMeeting(date)">{{date.getDate()}}</span>
-                        </ng-template>
-                        <ng-template kendoCalendarYearCellTemplate let-context="cellContext">
-                            <span [ngClass]="isYearMeeting(context.value)">{{context.formattedValue}}</span>
-                        </ng-template>
-                        <ng-template kendoCalendarDecadeCellTemplate let-context="cellContext">
-                            <span [ngClass]="isDecadeMeeting(context.value)">{{context.formattedValue}}</span>
-                        </ng-template>
-                        <ng-template kendoCalendarCenturyCellTemplate let-context="cellContext">
-                            <span [ngClass]="isCenturyMeeting(context.value)">{{context.formattedValue}}</span>
-                        </ng-template>
-                        
-                        <!--Numero della settimana-->
-                        <!--<ng-template kendoCalendarWeekNumberCellTemplate let-context="cellContext">
-                            <span class="weeknumber-cell">{{context.formattedValue}}</span>
-                        </ng-template>-->
-
-                        <!-- Titolo (es: July 2021)-->
-                        <ng-template kendoCalendarHeaderTitleTemplate let-title>
-                            {{title}}
-                        </ng-template>
-                        <ng-template kendoCalendarNavigationItemTemplate let-title let-date="date" let-view="activeView">
-                            {{view === 'month' && date.getMonth() === 0 ? 'Jan' : title}}
-                        </ng-template>
+                    <kendo-calendar [weekNumber]="false" (valueChange)="getDataFine($event)">
+                        <app-calendar></app-calendar>
                     </kendo-calendar>
 
                     <div class="mt-2">
 
                         <div class="row">
-                            <div class="col-md-8">Data selezionata: ****</div>
+                            <div class="col-md-8 labelData">Data selezionata: {{this.dataFineView || ''}}</div>
                             <div class="col-6 col-md-4">
-                                <a class="link-danger rimuoviData"><i class="fa fa-times"></i></a>
+                                <a class="link-danger rimuoviData" (click)="resetDate('fine')"><i class="fa fa-times"></i></a>
                             </div>
                         </div>
                     
@@ -136,7 +89,7 @@
                 Specializzazioni
             </div>
 
-            <app-specializzazioni [pagination]="this.pagination" (specializzazioniHandler)="getSpecializzazioni($event)"></app-specializzazioni>
+            <app-specializzazioni [pagination]="this.pagination" [condizione]="this.selectedItem" (specializzazioniHandler)="getSpecializzazioni($event)"></app-specializzazioni>
         </div>        
 
     </div>  <!-- FINE BODY FORM QUERY -->

@@ -1,3 +1,49 @@
+<div>
+
+    <!-- Criterio di ricerca X STATO -->
+    <div class="form-row" *ngIf="this.condizione=='Stato'">
+        <div class="form-row">
+        <div class="mb-3">
+            <label  for="validationServer03"><strong>Seleziona stato</strong></label>
+            <select class="form-select" aria-label="Default select example" id="SelectedItem" (change)="getSpecializzazioni($event)">
+            <option value="Wash" selected>Wash</option>
+            <option value="Napoli">Napoli</option>
+            <option value="Giacomo">Giacomo</option>
+            </select>
+        </div>
+        </div>
+    </div>
+
+     <!-- Criterio di ricerca X CONTEA -->
+     <div class="form-row" *ngIf="this.condizione=='Contea'">
+        <div class="form-row">
+        <div class="mb-3">
+            <label  for="validationServer03"><strong>Seleziona contea</strong></label>
+            <select class="form-select" aria-label="Default select example" id="SelectedItem" (change)="getSpecializzazioni($event)">
+            <option value="Wash" selected>Wash</option>
+            <option value="Napoli">Napoli</option>
+            <option value="Giacomo">Giacomo</option>
+            </select>
+        </div>
+        </div>
+    </div>
+
+     <!-- Criterio di ricerca X CITTA -->
+     <div class="form-row" *ngIf="this.condizione=='Città'">
+        <div class="form-row">
+        <div class="mb-3">
+            <label  for="validationServer03"><strong>Seleziona città</strong></label>
+            <select class="form-select" aria-label="Default select example" id="SelectedItem" (change)="getSpecializzazioni($event)">
+            <option value="Wash" selected>Wash</option>
+            <option value="Napoli">Napoli</option>
+            <option value="Giacomo">Giacomo</option>
+            </select>
+        </div>
+        </div>
+    </div>
+
+</div>
+
 
 <div 
     [ngClass] = "{

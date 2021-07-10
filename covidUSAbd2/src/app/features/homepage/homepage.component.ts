@@ -1,8 +1,10 @@
-import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Integration } from 'src/app/interface/integration';
 import { Proiezione } from 'src/app/interface/proiezioni';
 import { MainService } from 'src/app/services/main.service';
+
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-homepage',
@@ -16,6 +18,13 @@ export class HomepageComponent implements OnInit {
   projMap = new Map(); /*valori relativi alle proiezioni*/
 
   selectedItem : string = 'Stato'; //valore di default
+
+  dataInizio : string;  //dataInizio
+
+  dataFine : string; //dataFine
+
+  dataInizioView : string;
+  dataFineView : string;
 
   specializzazioni : Integration;
 
@@ -71,6 +80,46 @@ export class HomepageComponent implements OnInit {
   }
   public isCenturyMeeting(date: Date) {
       return date.getDate() % 20 ? 'meeting' : '';
+  }
+
+  getDataInizio(data : Date){
+    console.log(data)
+    let day = data.getUTCDate()+1;
+    let month = data.getUTCMonth();
+    let year = data.getUTCFullYear();
+    console.log(day,month,year);
+
+    let date : Date = new Date(year, month, day);
+
+    this.dataInizio = (moment(data)).format('YYYY-MM-DD');
+    this.dataInizioView = (moment(data)).format('DD-MM-YYYY');
+
+    //console.log('datainizio',this.dataInizio)
+  }
+
+  getDataFine(data : Date){
+    console.log(data)
+    let day = data.getUTCDate()+1;
+    let month = data.getUTCMonth();
+    let year = data.getUTCFullYear();
+    console.log(day,month,year);
+
+    let date : Date = new Date(year, month, day);
+
+    this.dataFine = (moment(data)).format('YYYY-MM-DD');
+    this.dataFineView = (moment(data)).format('DD-MM-YYYY');
+
+    //console.log('datainizio',this.dataInizio)
+  }
+
+  resetDate(type : string){
+    if(type=='inizio'){
+      this.dataInizio = '';
+      this.dataInizioView = '';
+    }else{
+      this.dataFine = '';
+      this.dataFineView = '';
+    }
   }
 
 

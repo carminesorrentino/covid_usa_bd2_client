@@ -10,6 +10,7 @@ import { MainService } from 'src/app/services/main.service';
 export class SpecializzazioniComponent implements OnInit, OnChanges {
 
   @Input() pagination : string;
+  @Input() condizione : string;
   
   //genera evento per notificare HomepageComponent
   @Output() specializzazioniHandler : EventEmitter<Integration> = new EventEmitter(); 
@@ -17,7 +18,11 @@ export class SpecializzazioniComponent implements OnInit, OnChanges {
   //Restituisce un oggetti Integration con tutti i campi
   integration : Integration;
 
-  constructor(public service : MainService) { }
+  constructor(public service : MainService) { 
+
+    
+
+  }
 
   ngOnInit(): void {
     //console.log('specializzazioni integration onInit', this.integration)
@@ -39,6 +44,10 @@ export class SpecializzazioniComponent implements OnInit, OnChanges {
       },
       lockdown : {
         tipo : 'Stay at home'
+      },
+      criterioDiRicerca : {
+        tipo : this.condizione,
+        value : ''
       }
     }
 
@@ -49,6 +58,7 @@ export class SpecializzazioniComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     console.log('OnBestemmioChanges -> pagination value: ', this.pagination)
     // changes.prop contains the old and the new value...
+    console.log('condizione di ricerca',this.condizione)
   }
 
   getSpecializzazioni($event){
@@ -63,6 +73,7 @@ export class SpecializzazioniComponent implements OnInit, OnChanges {
       case 'MortiMin' : this.integration.covid.morti.minoreDi = +($event.srcElement.value); break;
       case 'MortiMax' : this.integration.covid.morti.maggioreDi = +($event.srcElement.value); break;
       case 'TipoLockdown' : this.integration.lockdown.tipo = $event.srcElement.value; break;
+      case 'SelectedItem' : this.integration.criterioDiRicerca.tipo = this.condizione; this.integration.criterioDiRicerca.value = $event.srcElement.value; break;
     }
 
     //console.log('specializzazioni id', $event.srcElement.id)

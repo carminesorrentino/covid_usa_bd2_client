@@ -1,0 +1,27 @@
+<ng-template kendoCalendarMonthCellTemplate let-date>
+    <span [ngClass]="isMeeting(date)">{{date.getDate()}}</span>
+</ng-template>
+<ng-template kendoCalendarYearCellTemplate let-context="cellContext">
+    <span [ngClass]="isYearMeeting(context.value)">{{context.formattedValue}}</span>
+</ng-template>
+<ng-template kendoCalendarDecadeCellTemplate let-context="cellContext">
+    <span [ngClass]="isDecadeMeeting(context.value)">{{context.formattedValue}}</span>
+</ng-template>
+<ng-template kendoCalendarCenturyCellTemplate let-context="cellContext">
+    <span [ngClass]="isCenturyMeeting(context.value)">{{context.formattedValue}}</span>
+</ng-template>
+
+<!--Numero della settimana-->
+<!--<ng-template kendoCalendarWeekNumberCellTemplate let-context="cellContext">
+    <span class="weeknumber-cell">{{context.formattedValue}}</span>
+</ng-template>-->
+
+<!-- Titolo (es: July 2021)-->
+<ng-template kendoCalendarHeaderTitleTemplate let-title>
+    {{title}}
+</ng-template>
+<ng-template kendoCalendarNavigationItemTemplate let-title let-date="date" let-view="activeView">
+    {{view === 'month' && date.getMonth() === 0 ? 'Jan' : title}}
+</ng-template>
+
+

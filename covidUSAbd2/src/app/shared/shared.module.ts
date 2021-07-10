@@ -4,6 +4,7 @@ import { ProiezioniComponent } from './proiezioni/proiezioni.component';
 import { FormsModule } from '@angular/forms';
 import { CondizioniComponent } from './condizioni/condizioni.component';
 import { SpecializzazioniComponent } from './specializzazioni/specializzazioni.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 
 
@@ -11,7 +12,8 @@ import { SpecializzazioniComponent } from './specializzazioni/specializzazioni.c
   declarations: [
     ProiezioniComponent,
     CondizioniComponent,
-    SpecializzazioniComponent
+    SpecializzazioniComponent,
+    CalendarComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { SpecializzazioniComponent } from './specializzazioni/specializzazioni.c
   exports: [
     ProiezioniComponent,
     CondizioniComponent,
-    SpecializzazioniComponent
+    SpecializzazioniComponent,
+    CalendarComponent
   ]
 })
 export class SharedModule { }
