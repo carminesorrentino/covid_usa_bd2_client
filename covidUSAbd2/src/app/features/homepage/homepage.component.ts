@@ -20,8 +20,8 @@ export class HomepageComponent implements OnInit {
 
   selectedItem : string = 'Stato'; //valore di default
 
-  dataInizio : string;  //dataInizio
-  dataFine : string; //dataFine
+  dataInizio : string = '';  //dataInizio
+  dataFine : string = ''; //dataFine
 
   dataInizioView : string;  //data inizio per la formattazione nella homepage (dd:mm:yyyy)
   dataFineView : string; //data fine per la formattazione nella homepage  (dd:mm:yyyy)
@@ -131,6 +131,7 @@ export class HomepageComponent implements OnInit {
       return date.getDate() % 20 ? 'meeting' : '';
   }
 
+  /*evento che riceve dal calendario1 la data di inizio selezionata*/
   getDataInizio(data : Date){
     console.log(data)
     let day = data.getUTCDate()+1;
@@ -178,39 +179,41 @@ export class HomepageComponent implements OnInit {
 
     let body : any;
 
-    this.mapToArray()
-
     switch(this.pagination){
 
       case 'Covid-19: cases and deaths': 
 
         body = {
-          proiezioni : this.mapToArray(),
+          proiezioni : this.mapToArray(this.projMap),
           condizioni : {
             searchBy : {
               type : this.selectedItem,
-              value : (this.specializzazioni?.criterioDiRicerca.value || 'Tutti')
+              value : this.specializzazioni.criterioDiRicerca.value
             },
             byDataInizio : this.dataInizio,
             byDataFine : this.dataFine
           },
           specializzazioni : {
             byCasiCovid : {
-              start : this.specializzazioni?.covid.casi.maggioreDi,
-              end : this.specializzazioni?.covid.casi.minoreDi
+              start : this.specializzazioni.covid.casi.maggioreDi,
+              end : this.specializzazioni.covid.casi.minoreDi
             },
             byMortiCovid : {
-              start : this.specializzazioni?.covid.morti.maggioreDi,
-              end : this.specializzazioni?.covid.morti.minoreDi
+              start : this.specializzazioni.covid.morti.maggioreDi,
+              end : this.specializzazioni.covid.morti.minoreDi
             }
           }
         }
 
-        this.http.post(this.service.urlServer+'/covid19',body).subscribe(result => {
+        console.log('BODY',body)
+
+        break;
+
+       /* this.http.post(this.service.urlServer+'/covid19',body).subscribe(result => {
           console.log('risultato covid 19',result);
         }, err => {
           console.log('Si è verificato un errore in '+this.service.urlServer+'/covid19')
-        })
+        })*/
 
       case 'Lockdown':
       case 'Air quality':
@@ -222,16 +225,18 @@ export class HomepageComponent implements OnInit {
     console.log('lo forme', form)
   }
 
-  mapToArray() {
+
+  /*Converte un map in array*/
+  mapToArray(map : Map<any,any>) {
 
     let array : Proiezione[] = [];
 
-    this.projMap.forEach( item => {
+    map.forEach( item => {
       array.push(item)
     })
 
-    //console.log('jez',array)
-
+    return array;
+ 
   }
 
  
