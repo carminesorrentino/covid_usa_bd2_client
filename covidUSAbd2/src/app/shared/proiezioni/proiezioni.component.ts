@@ -14,6 +14,7 @@ proiezioni : Proiezione[] = [];
 projMap = new Map();
 
 //genera evento per notificare HomepageComponent
+@Output() proiezioniFirstTime : EventEmitter<Map<string, Proiezione>> = new EventEmitter();  //popola projMap di homepage component con i valori di default nel momento del load della componente
 @Output() proiezioniHandler : EventEmitter<Map<string, Proiezione>> = new EventEmitter();
 
 ObjectID : string ;
@@ -40,7 +41,10 @@ ObjectID : string ;
 
     }
    
-    //console.log(this.projMap);  //map inizializzato
+    //console.log('dante alighieri',this.projMap);  //map inizializzato
+
+    this.proiezioniFirstTime.emit(this.projMap);
+
 
   }
 
@@ -56,6 +60,7 @@ ObjectID : string ;
     this.projMap.set(item.srcElement.name, {field: item.srcElement.name, checked : item.srcElement.checked })
 
     this.proiezioniHandler.emit(this.projMap);
+
   }
 
 }

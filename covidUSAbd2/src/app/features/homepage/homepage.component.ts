@@ -5,6 +5,7 @@ import { Proiezione } from 'src/app/interface/proiezioni';
 import { MainService } from 'src/app/services/main.service';
 
 import * as moment from 'moment';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-homepage',
@@ -20,16 +21,49 @@ export class HomepageComponent implements OnInit {
   selectedItem : string = 'Stato'; //valore di default
 
   dataInizio : string;  //dataInizio
-
   dataFine : string; //dataFine
 
-  dataInizioView : string;
-  dataFineView : string;
+  dataInizioView : string;  //data inizio per la formattazione nella homepage (dd:mm:yyyy)
+  dataFineView : string; //data fine per la formattazione nella homepage  (dd:mm:yyyy)
 
-  specializzazioni : Integration;
+  specializzazioni : Integration;  //array contenente tutti i valori degli elementi in specializzazioni.component
 
-  constructor(public service : MainService) { 
+  states : string[]; //array di stati
+  counties : string[];  //array di contee
+  cities : string[];  //array di città
+
+  constructor(public service : MainService, protected http : HttpClient) { 
     console.log('pagination homepage', this.pagination)
+
+    let body = {}
+
+    /*query per ottenere lista degli stati*/
+
+    this.http.post<string[]>(this.service.urlServer+'/homepage/getState',body)
+    .subscribe( (response:string[]) => {
+      this.states = response;
+    }, error => {
+      console.log('error',error.error.text)
+    })
+
+
+    /*query per ottenere lista delle contee*/
+    this.http.post<string[]>(this.service.urlServer+'/homepage/getCounty',body)
+    .subscribe( (response:string[]) => {
+      this.counties = response;
+    }, error => {
+      console.log('error',error.error.text)
+    })
+
+
+    /*query per ottenere lista delle città*/
+    this.http.post<string[]>(this.service.urlServer+'/homepage/getCity',body)
+    .subscribe( (response:string[]) => {
+      this.cities = response;
+    }, error => {
+      console.log('error',error.error.text)
+    })
+
   }
 
   ngOnInit(): void { 
@@ -42,6 +76,13 @@ export class HomepageComponent implements OnInit {
     console.log('onInit', this.pagination)
   }
 
+  /*al caricamento della componente proiezioni riceve un map con i valori di default di proiezione*/
+  getProiezioniFirstTime(proj : Map<string,Proiezione>){
+    this.projMap = proj;
+    console.log('Map Checkbox in Homepage FIRST TIME [getProiezioni(proj)]',this.projMap)
+  }
+
+  /*per ogni modifica della componente proiezioni riceve un map con i valori di default di proiezione*/
   getProiezioni(proj : Map<string,Proiezione>){
     this.projMap = proj;
     console.log('Map Checkbox in Homepage [getProiezioni(proj)]',this.projMap)
@@ -52,6 +93,14 @@ export class HomepageComponent implements OnInit {
     console.log('Stringa Radio button in Homepage [getCondizione(selectedItem)]', this.selectedItem)
   }
 
+  /*al caricamento della componente specializzazioni riceve un array con i valori di default di integration*/
+  getSpecializzazioniFirstTime(specializzazione : Integration){
+    this.specializzazioni = specializzazione;
+
+    console.log('Homepage specializzazione first time value', this.specializzazioni)
+  }
+
+  /*per ogni modifica della componente specializzazioni riceve un array con i valori di default di integration*/
   getSpecializzazioni(specializzazione : Integration){
     this.specializzazioni = specializzazione;
 
@@ -97,6 +146,7 @@ export class HomepageComponent implements OnInit {
     //console.log('datainizio',this.dataInizio)
   }
 
+  /*evento che riceve dal calendario2 la data di fine selezionata*/
   getDataFine(data : Date){
     console.log(data)
     let day = data.getUTCDate()+1;
@@ -112,6 +162,7 @@ export class HomepageComponent implements OnInit {
     //console.log('datainizio',this.dataInizio)
   }
 
+  /*al click della X rimuove la data selezionata*/
   resetDate(type : string){
     if(type=='inizio'){
       this.dataInizio = '';
@@ -124,7 +175,63 @@ export class HomepageComponent implements OnInit {
 
 
   submitForm(form : NgForm){
+
+    let body : any;
+
+    this.mapToArray()
+
+    switch(this.pagination){
+
+      case 'Covid-19: cases and deaths': 
+
+        body = {
+          proiezioni : this.mapToArray(),
+          condizioni : {
+            searchBy : {
+              type : this.selectedItem,
+              value : (this.specializzazioni?.criterioDiRicerca.value || 'Tutti')
+            },
+            byDataInizio : this.dataInizio,
+            byDataFine : this.dataFine
+          },
+          specializzazioni : {
+            byCasiCovid : {
+              start : this.specializzazioni?.covid.casi.maggioreDi,
+              end : this.specializzazioni?.covid.casi.minoreDi
+            },
+            byMortiCovid : {
+              start : this.specializzazioni?.covid.morti.maggioreDi,
+              end : this.specializzazioni?.covid.morti.minoreDi
+            }
+          }
+        }
+
+        this.http.post(this.service.urlServer+'/covid19',body).subscribe(result => {
+          console.log('risultato covid 19',result);
+        }, err => {
+          console.log('Si è verificato un errore in '+this.service.urlServer+'/covid19')
+        })
+
+      case 'Lockdown':
+      case 'Air quality':
+      case 'Integration':
+
+      default : console.log('errore in submitForm'); break;
+    }
+
     console.log('lo forme', form)
+  }
+
+  mapToArray() {
+
+    let array : Proiezione[] = [];
+
+    this.projMap.forEach( item => {
+      array.push(item)
+    })
+
+    //console.log('jez',array)
+
   }
 
  

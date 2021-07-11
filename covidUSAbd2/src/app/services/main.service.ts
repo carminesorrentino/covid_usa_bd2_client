@@ -6,6 +6,8 @@ import {BehaviorSubject} from 'rxjs';  //Observable
 })
 export class MainService {
 
+  urlServer : string = 'https://basi2nosql.herokuapp.com';
+
   /*Inizializza un nuovo valore a null*/
   private pagination: BehaviorSubject<string> = new BehaviorSubject(null);
 

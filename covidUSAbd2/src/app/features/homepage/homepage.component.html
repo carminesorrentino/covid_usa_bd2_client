@@ -21,7 +21,10 @@
                 Proiezioni
             </div>
             
-            <app-proiezioni (proiezioniHandler)="getProiezioni($event)"></app-proiezioni>
+            <app-proiezioni 
+            (proiezioniHandler)="getProiezioni($event)"
+            (proiezioniFirstTime)="getProiezioniFirstTime($event)"  
+            ></app-proiezioni>
 
             <!--CONDIZIONI-->
             <div class="titoloSezione mt-5">
@@ -89,7 +92,15 @@
                 Specializzazioni
             </div>
 
-            <app-specializzazioni [pagination]="this.pagination" [condizione]="this.selectedItem" (specializzazioniHandler)="getSpecializzazioni($event)"></app-specializzazioni>
+            <app-specializzazioni 
+                [pagination]="this.pagination" 
+                [condizione]="this.selectedItem" 
+                [states]="this.states"
+                [counties]="this.counties"
+                [cities]="this.cities"
+                (specializzazioniHandler)="getSpecializzazioni($event)"
+                (specializzazioneDefaultElement)="getSpecializzazioniFirstTime($event)">
+            </app-specializzazioni>
         </div>        
 
     </div>  <!-- FINE BODY FORM QUERY -->

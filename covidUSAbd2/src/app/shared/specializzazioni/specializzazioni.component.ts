@@ -11,18 +11,18 @@ export class SpecializzazioniComponent implements OnInit, OnChanges {
 
   @Input() pagination : string;
   @Input() condizione : string;
+  @Input() states : string[];
+  @Input() counties : string[];
+  @Input() cities : string[];
   
   //genera evento per notificare HomepageComponent
+  @Output() specializzazioneDefaultElement : EventEmitter<Integration> = new EventEmitter();  //restituisce al caricamento della componente un array integration contenente i valori di default a homepage.component
   @Output() specializzazioniHandler : EventEmitter<Integration> = new EventEmitter(); 
 
   //Restituisce un oggetti Integration con tutti i campi
   integration : Integration;
 
-  constructor(public service : MainService) { 
-
-    
-
-  }
+  constructor(public service : MainService) { }
 
   ngOnInit(): void {
     //console.log('specializzazioni integration onInit', this.integration)
@@ -47,23 +47,28 @@ export class SpecializzazioniComponent implements OnInit, OnChanges {
       },
       criterioDiRicerca : {
         tipo : this.condizione,
-        value : ''
+        value : 'Tutti',
       }
     }
 
     this.integration = newIntegration;
+
+    this.specializzazioneDefaultElement.emit(this.integration);  //notifica homepage component con integration di default
     
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log('OnBestemmioChanges -> pagination value: ', this.pagination)
+    //console.log('OnBestemmioChanges -> pagination value: ', this.pagination)
     // changes.prop contains the old and the new value...
-    console.log('condizione di ricerca',this.condizione)
+    //console.log('condizione di ricerca',this.condizione)
+
+
+    //console.log('can',this.states)
   }
 
   getSpecializzazioni($event){
 
-    console.log(this.integration)
+    //console.log(this.integration)
 
     switch($event.srcElement.id){
       case 'AirQualityMin' : this.integration.airQuality.minoreDi = +($event.srcElement.value); break;
@@ -78,7 +83,7 @@ export class SpecializzazioniComponent implements OnInit, OnChanges {
 
     //console.log('specializzazioni id', $event.srcElement.id)
     //console.log('specializzaioni values',$event.srcElement.value);
-    console.log('integration', this.integration)
+    //console.log('integration', this.integration)
 
     this.specializzazioniHandler.emit(this.integration);
 

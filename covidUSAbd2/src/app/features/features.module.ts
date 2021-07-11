@@ -10,9 +10,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IntlModule } from '@progress/kendo-angular-intl';
 import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 import { LabelModule } from '@progress/kendo-angular-label';
-import { ProiezioniComponent } from '../shared/proiezioni/proiezioni.component';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -31,7 +31,8 @@ import { FormsModule } from '@angular/forms';
     LabelModule,
     DateInputsModule,
     SharedModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   exports: [
     HomepageComponent,
