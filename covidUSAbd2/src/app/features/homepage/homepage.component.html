@@ -1,20 +1,15 @@
-<!--
-<div class="m-4">
-    <hr>
-    <a href="gridExample">grid example</a>
-    <hr>
-    <a href="chartExample">chart example</a>
-</div>
--->
-
 <div class="bodyFormQuery">
+
+    <div class="titleSection">
+       <h3>{{this?.pagination}}</h3>
+    </div>
 
   <form #formReference="ngForm" (ngSubmit)=submitForm(formReference)>
 
     <div class="row justify-content-md-start">
 
         <!-- PROIEZIONI E CONDIZIONI -->
-        <div class="proiezioni col col-lg-2 mt-4">
+        <div class="proiezioni col col-lg-3 mt-4">
             
             <!--PROIEZIONI-->
             <div class="titoloSezione">
@@ -38,7 +33,7 @@
             <!-- Data inizio ricerca (primo calendario) -->
             <div class="calendario col-md-auto mt-4">
                 
-                <div class="titoloSezione">
+                <div class="titoloSezione calendar">
                     Data inizio ricerca
                 </div>
 
@@ -64,7 +59,7 @@
             <!-- Data fine ricerca (secondo calendario) -->
             <div class="calendario col-md-auto mt-4">
                 
-                <div class="titoloSezione">
+                <div class="titoloSezione calendar">
                     Data fine ricerca
                 </div>
 
@@ -88,7 +83,7 @@
         <!-- SPECIALIZZAZIONI -->
         <div class="specializzazioni col-md-auto mt-4">
             
-            <div class="titoloSezione">
+            <div class="titoloSezione mb-3">
                 Specializzazioni
             </div>
 

@@ -1,4 +1,10 @@
-/* Sezione proiezioni del form */
-.proiezioni{
-    border: solid red 2px;
+/*Prima checkbox*/
+.proiezioneFirst{
+    padding-top: 1em;
+    margin-left: 1em;
+}
+
+/*Altri elementi checkbox*/
+.proiezioneItem{
+    margin-left: 1em;
 }

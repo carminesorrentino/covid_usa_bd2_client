@@ -174,60 +174,58 @@ export class HomepageComponent implements OnInit {
     }
   }
 
-
+  /*viene richiamato al submit del form per inviare la query*/
   submitForm(form : NgForm){
 
-    let body : any;
-
     switch(this.pagination){
-
-      case 'Covid-19: cases and deaths': 
-
-        body = {
-          proiezioni : this.mapToArray(this.projMap),
-          condizioni : {
-            searchBy : {
-              type : this.selectedItem,
-              value : this.specializzazioni.criterioDiRicerca.value
-            },
-            byDataInizio : this.dataInizio,
-            byDataFine : this.dataFine
-          },
-          specializzazioni : {
-            byCasiCovid : {
-              start : this.specializzazioni.covid.casi.maggioreDi,
-              end : this.specializzazioni.covid.casi.minoreDi
-            },
-            byMortiCovid : {
-              start : this.specializzazioni.covid.morti.maggioreDi,
-              end : this.specializzazioni.covid.morti.minoreDi
-            }
-          }
-        }
-
-        console.log('BODY',body)
-
-        break;
-
-       /* this.http.post(this.service.urlServer+'/covid19',body).subscribe(result => {
-          console.log('risultato covid 19',result);
-        }, err => {
-          console.log('Si è verificato un errore in '+this.service.urlServer+'/covid19')
-        })*/
-
+      case 'Covid-19: cases and deaths': this.formCovid(); break;
       case 'Lockdown':
       case 'Air quality':
       case 'Integration':
-
-      default : console.log('errore in submitForm'); break;
+      default : console.log('dafault case in submitForm(form);'); break;
     }
 
-    console.log('lo forme', form)
+  }
+
+  /*Invia informazioni e ottiene risposte dal server quando viene inviato un form nella pagina covid: cases and deaths*/
+  /*Richiamato in SubmitForm($event)*/
+  formCovid(){
+
+    let body = {
+      proiezioni : HomepageComponent.mapToArray(this.projMap),
+      condizioni : {
+        searchBy : {
+          type : this.selectedItem,
+          value : this.specializzazioni.criterioDiRicerca.value
+        },
+        byDataInizio : this.dataInizio,
+        byDataFine : this.dataFine
+      },
+      specializzazioni : {
+        byCasiCovid : {
+          start : this.specializzazioni.covid.casi.maggioreDi,
+          end : this.specializzazioni.covid.casi.minoreDi
+        },
+        byMortiCovid : {
+          start : this.specializzazioni.covid.morti.maggioreDi,
+          end : this.specializzazioni.covid.morti.minoreDi
+        }
+      }
+    }
+
+    console.log('BODY',body)
+
+    this.http.post(this.service.urlServer+'/covid19',body).subscribe(result => {
+      console.log('risultato covid 19',result);
+    }, err => {
+      console.log('Si è verificato un errore in '+this.service.urlServer+'/covid19: '+err)
+    })
+
   }
 
 
   /*Converte un map in array*/
-  mapToArray(map : Map<any,any>) {
+  static mapToArray(map : Map<any,any>) {
 
     let array : Proiezione[] = [];
 

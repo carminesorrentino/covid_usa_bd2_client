@@ -1,9 +1,19 @@
 /*Container categorie e form queries*/
 .bodyFormQuery{
-    padding: 5em;
     background: transparent;
-    color: black;
+    padding-left: 2em;
+    padding-right: 2em;
+    color: white;
     border: solid black 2px;
+    background-color:#252525;
+}
+
+/*Titolo sezione selezionata*/
+.titleSection{
+    text-align: center;
+    border: solid red 2px;
+    margin-top: 2em;
+    margin-bottom: 1em;
 }
 
 /* Label contenente la stringa del titolo centrata */
@@ -15,30 +25,39 @@
 
 /*Label div di ciascuna sezione*/
 .titoloSezione{
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 1em;
     font-weight: bold;
     font-size: 1.2em;
-    margin-bottom: 1.2em;
 }
 
 .proiezioni{
-    border: solid yellow 2px;
+    padding-left: 1em;
+    padding-right: 1em;
+    border: solid rgba(0, 0, 0, 0.404) 2px;
     margin-left: 1em;
+    padding-bottom: 1em;
 }
 
 .condizioni{
-    border: solid green 2px;
+    border: solid rgba(0, 0, 0, 0.404) 2px;
     margin-left: 1em;
+    padding-bottom: 1em;
 }
 
 .specializzazioni{
-    border: solid orange 2px;
+    border: solid rgba(0, 0, 0, 0.404) 2px;
     margin-left: 1.5em;
     width: max-content;
+    padding-bottom: 1em;
 }
 
+/*div calendario*/
 .calendario{
-    border: solid salmon 3px;
+    border: solid rgba(0, 0, 0, 0.404) 2px;
     margin-left: 1em;
+    padding-bottom: 1em;
 }
 
 .calendariInizioeFine{
@@ -84,6 +103,11 @@
   .labelData{
       font-size: 0.9em;
       font-weight: bold;
+  }
+
+  /*titolo calendario perché non prende le classi su kendo (data inizio /fine)*/
+  .calendar{
+    margin-bottom: 1em;
   }
 
 
