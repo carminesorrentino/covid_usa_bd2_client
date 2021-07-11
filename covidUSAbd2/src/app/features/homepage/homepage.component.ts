@@ -194,7 +194,7 @@ export class HomepageComponent implements OnInit {
       case 'Covid-19: cases and deaths': this.formCovid(); break;
       case 'Lockdown': this.formLockdown(); break;
       case 'Air quality': this.airQualityForm(); break;
-      case 'Integration':
+      case 'Integration': this.integrationForm(); break;
       default : console.log('dafault case in submitForm(form);'); break;
     }
 
@@ -283,6 +283,53 @@ export class HomepageComponent implements OnInit {
       this.noAnswer = true;
       console.log('Si è verificato un errore in '+this.service.urlServer+'/airquality: '+err)
     })
+  }
+
+  /*Invia informazioni e ottiene risposte dal server quando viene inviato un form nella pagina integration*/
+  /*Richiamato in SubmitForm($event)*/
+  integrationForm(){
+
+    let body = {
+      proiezioni : HomepageComponent.mapToArray(this.projMap),
+      condizioni : {
+        searchBy : {
+          type : this.selectedItem,
+          value : this.specializzazioni.criterioDiRicerca.value
+        },
+        byDataInizio : this.dataInizio,
+        byDataFine : this.dataFine
+      },
+      specializzazioni : {
+        byCasiCovid : {
+          start : this.specializzazioni.covid.casi.maggioreDi,
+          end : this.specializzazioni.covid.casi.minoreDi
+        },
+        byMortiCovid : {
+          start : this.specializzazioni.covid.morti.maggioreDi,
+          end : this.specializzazioni.covid.morti.minoreDi
+        },
+        air_quality : {
+          start : this.specializzazioni.airQuality.maggioreDi,
+          end : this.specializzazioni.airQuality.minoreDi
+        },
+        type_lockdown : this.specializzazioni.lockdown.tipo
+      }
+    }
+
+    console.log('BODY',body)
+
+    this.http.post(this.service.urlServer+'/integrationQuery',body).subscribe(result => {
+      console.log('risultato integration',result);
+      if(result == null || result == []){
+        this.noAnswer = true;
+      }
+      this.covidAnswer = result;
+      console.log('covidAnswer', this.covidAnswer)
+    }, err => {
+      this.noAnswer = true;
+      console.log('Si è verificato un errore in '+this.service.urlServer+'/airquality: '+err)
+    })
+    
   }
 
 

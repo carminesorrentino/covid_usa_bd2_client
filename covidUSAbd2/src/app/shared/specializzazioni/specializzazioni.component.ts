@@ -43,7 +43,7 @@ export class SpecializzazioniComponent implements OnInit, OnChanges {
         }
       },
       lockdown : {
-        tipo : 'Stay at home'
+        tipo : 'Nessuno'
       },
       criterioDiRicerca : {
         tipo : this.condizione,
