@@ -116,8 +116,8 @@
         </div>
       </div>
     <h5>
-        <app-chart-covid [covidResult]="this.covidAnswer"></app-chart-covid>
-        <app-grid-covid [covidResult]="this.covidAnswer"></app-grid-covid>
+        <app-chart-covid [covidResult]="this.covidAnswer" [projMap]="this.projMap"></app-chart-covid>
+        <app-grid-covid [covidResult]="this.covidAnswer" [projMap]="this.projMap"></app-grid-covid>
     </h5>
     <div class="noAnswer" *ngIf="this.noAnswer">
         <h5 class="mb-4">

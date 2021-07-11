@@ -9,6 +9,8 @@ export class ChartCovidComponent implements OnInit, OnChanges {
 
   @Input() covidResult;
 
+  @Input() projMap;
+
   constructor() { }
 
   ngOnInit(): void {

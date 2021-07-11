@@ -8,6 +8,7 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/cor
 export class GridCovidComponent implements OnInit, OnChanges {
 
   @Input() covidResult;
+  @Input() projMap;
 
   constructor() { }
 
