@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { CondizioniComponent } from './condizioni/condizioni.component';
 import { SpecializzazioniComponent } from './specializzazioni/specializzazioni.component';
 import { CalendarComponent } from './calendar/calendar.component';
+import { GridCovidComponent } from './grid-covid/grid-covid.component';
+import { ChartCovidComponent } from './chart-covid/chart-covid.component';
 
 
 
@@ -13,7 +15,9 @@ import { CalendarComponent } from './calendar/calendar.component';
     ProiezioniComponent,
     CondizioniComponent,
     SpecializzazioniComponent,
-    CalendarComponent
+    CalendarComponent,
+    GridCovidComponent,
+    ChartCovidComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +27,9 @@ import { CalendarComponent } from './calendar/calendar.component';
     ProiezioniComponent,
     CondizioniComponent,
     SpecializzazioniComponent,
-    CalendarComponent
+    CalendarComponent,
+    ChartCovidComponent,
+    GridCovidComponent
   ]
 })
 export class SharedModule { }

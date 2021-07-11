@@ -11,7 +11,6 @@
 /*Titolo sezione selezionata*/
 .titleSection{
     text-align: center;
-    border: solid red 2px;
     margin-top: 2em;
     margin-bottom: 1em;
 }
@@ -122,3 +121,22 @@
   .pagination{
     cursor: pointer;
   }
+
+
+  /*DIV NESSUNA RISPOSTA*/
+  .noAnswer{
+    text-align: center;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    background-color:#252525;
+    font-size: 2em;
+  }
+
+  /*Spinner*/
+  .wait{
+    background-color: #252525;
+    color: white;
+    padding-top: 3em;
+    padding-bottom: 3em;
+  }
+  

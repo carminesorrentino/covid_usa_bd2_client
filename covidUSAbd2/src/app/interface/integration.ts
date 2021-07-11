@@ -4,8 +4,8 @@ import { Lockdown } from "./lockdown";
 import { SearchBy } from "./searchBy";
 
 export interface Integration{
-    covid: Covid,      
-    airQuality : AirQuality;
-    lockdown : Lockdown;
-    criterioDiRicerca: SearchBy;
+    covid ?: Covid,      
+    airQuality ?: AirQuality;
+    lockdown ?: Lockdown;
+    criterioDiRicerca ?: SearchBy;
 }

@@ -1,3 +1,3 @@
 export interface Lockdown{
-    tipo : string
+    tipo ?: string
 }

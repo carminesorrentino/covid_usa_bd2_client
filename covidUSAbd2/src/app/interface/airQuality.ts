@@ -1,4 +1,4 @@
 export interface AirQuality{
-    minoreDi : number,
-    maggioreDi : number
+    minoreDi ?: number,
+    maggioreDi ?: number
 }

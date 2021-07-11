@@ -6,6 +6,7 @@ import { MainService } from 'src/app/services/main.service';
 
 import * as moment from 'moment';
 import { HttpClient } from '@angular/common/http';
+import { Risposta } from 'src/app/interface/risposta';
 
 @Component({
   selector: 'app-homepage',
@@ -31,6 +32,13 @@ export class HomepageComponent implements OnInit {
   states : string[]; //array di stati
   counties : string[];  //array di contee
   cities : string[];  //array di città
+
+  //risposte
+  flag_queryStatus : boolean = false;  //false = query non effettuata
+                                       //true = query effettuata
+  covidAnswer : Risposta;
+  noAnswer : boolean;    //false = non si sono verificati errori o risposte vuote
+                                  //true = ricevuta una risposta vuota o un errore
 
   constructor(public service : MainService, protected http : HttpClient) { 
     console.log('pagination homepage', this.pagination)
@@ -177,9 +185,14 @@ export class HomepageComponent implements OnInit {
   /*viene richiamato al submit del form per inviare la query*/
   submitForm(form : NgForm){
 
+    //gira finché non viene restituita una risposta e il valore 
+    //while(this.flag_queryStatus && !this.noAnswer && !this.covidAnswer)
+    this.flag_queryStatus = true;
+    this.noAnswer = null;
+
     switch(this.pagination){
       case 'Covid-19: cases and deaths': this.formCovid(); break;
-      case 'Lockdown':
+      case 'Lockdown': this.formLockdown(); break;
       case 'Air quality':
       case 'Integration':
       default : console.log('dafault case in submitForm(form);'); break;
@@ -217,9 +230,21 @@ export class HomepageComponent implements OnInit {
 
     this.http.post(this.service.urlServer+'/covid19',body).subscribe(result => {
       console.log('risultato covid 19',result);
+      if(result == null || result == []){
+        this.noAnswer = true;
+      }
+      this.covidAnswer = result;
+      console.log('covidAnswer', this.covidAnswer)
     }, err => {
+      this.noAnswer = true;
       console.log('Si è verificato un errore in '+this.service.urlServer+'/covid19: '+err)
     })
+
+  }
+
+  /*Invia informazioni e ottiene risposte dal server quando viene inviato un form nella pagina lockdown*/
+  /*Richiamato in SubmitForm($event)*/
+  formLockdown(){
 
   }
 
