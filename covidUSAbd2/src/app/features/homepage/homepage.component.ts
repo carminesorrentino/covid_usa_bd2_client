@@ -193,7 +193,7 @@ export class HomepageComponent implements OnInit {
     switch(this.pagination){
       case 'Covid-19: cases and deaths': this.formCovid(); break;
       case 'Lockdown': this.formLockdown(); break;
-      case 'Air quality':
+      case 'Air quality': this.airQualityForm(); break;
       case 'Integration':
       default : console.log('dafault case in submitForm(form);'); break;
     }
@@ -246,6 +246,43 @@ export class HomepageComponent implements OnInit {
   /*Richiamato in SubmitForm($event)*/
   formLockdown(){
 
+  }
+
+  /*Invia informazioni e ottiene risposte dal server quando viene inviato un form nella pagina air quality*/
+  /*Richiamato in SubmitForm($event)*/
+  airQualityForm(){
+
+    let body = {
+      proiezioni : HomepageComponent.mapToArray(this.projMap),
+      condizioni : {
+        searchBy : {
+          type : this.selectedItem,
+          value : this.specializzazioni.criterioDiRicerca.value
+        },
+        byDataInizio : this.dataInizio,
+        byDataFine : this.dataFine
+      },
+      specializzazioni : {
+        air_quality : {
+          start : this.specializzazioni.airQuality.maggioreDi,
+          end : this.specializzazioni.airQuality.minoreDi
+        }
+      }
+    }
+
+    console.log('BODY',body)
+
+    this.http.post(this.service.urlServer+'/integrationQuery',body).subscribe(result => {
+      console.log('risultato covid 19',result);
+      if(result == null || result == []){
+        this.noAnswer = true;
+      }
+      this.covidAnswer = result;
+      console.log('covidAnswer', this.covidAnswer)
+    }, err => {
+      this.noAnswer = true;
+      console.log('Si è verificato un errore in '+this.service.urlServer+'/airquality: '+err)
+    })
   }
 
 
