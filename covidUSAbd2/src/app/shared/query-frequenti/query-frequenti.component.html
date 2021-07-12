@@ -1,5 +1,3 @@
-<p>query-frequenti works!</p>
-
 <div>
 
     <!-- Criterio di ricerca X TIPO QUERY -->
@@ -27,12 +25,26 @@
     </div>
 
     <!-- Criterio di ricerca X STATO 2 -->
-    <div class="form-row">
+    <div class="form-row" *ngIf="this.queryFrequenti.tipo_query=='Confronta i casi di Covid-19 tra due diversi stati'">
         <div class="form-row">
         <div class="mb-3">
             <label  for="validationServer03"><strong>Seleziona stato (2)</strong></label>
             <select class="form-select" aria-label="Default select example" id="Stato2" (change)="getQueryFrequenti($event)">
                 <option *ngFor="let item of this?.states?.state" [value]="item" selected>{{item}}</option>
+            </select>
+        </div>
+        </div>
+    </div>
+
+    <!-- Criterio di ricerca X LOCKDOWN -->
+    <div class="form-row" 
+        *ngIf="this.queryFrequenti.tipo_query=='Visualizza andamento QoA pre/post lockdown' || this.queryFrequenti.tipo_query=='Visualizza l\'andamento dei contagi pre/post lockdown'"
+    >
+        <div class="form-row">
+        <div class="mb-3">
+            <label  for="validationServer03"><strong>Seleziona lockdown</strong></label>
+            <select class="form-select" aria-label="Default select example" id="lockdown" (change)="getQueryFrequenti($event)">
+                <option *ngFor="let item of this?.listaLockdown" [value]="item.data">{{item?.tipo}} / {{item?.data}}</option>
             </select>
         </div>
         </div>

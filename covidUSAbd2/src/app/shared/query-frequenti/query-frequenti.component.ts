@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Lockdown } from 'src/app/interface/lockdown';
 import { QueryFrequenti } from 'src/app/interface/queryFrequenti';
 
 @Component({
@@ -22,6 +23,8 @@ export class QueryFrequentiComponent implements OnInit, OnChanges {
   queryFrequenti : QueryFrequenti;
 
   listaQuery : string[] = [];
+
+  listaLockdown : Lockdown[] = [];
 
   constructor() { }
 
