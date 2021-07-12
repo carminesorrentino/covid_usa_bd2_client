@@ -8,6 +8,7 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { GridCovidComponent } from './grid-covid/grid-covid.component';
 import { ChartCovidComponent } from './chart-covid/chart-covid.component';
 import { DxDataGridModule, DxTemplateModule } from 'devextreme-angular';
+import { QueryFrequentiComponent } from './query-frequenti/query-frequenti.component';
 
 
 
@@ -18,7 +19,8 @@ import { DxDataGridModule, DxTemplateModule } from 'devextreme-angular';
     SpecializzazioniComponent,
     CalendarComponent,
     GridCovidComponent,
-    ChartCovidComponent
+    ChartCovidComponent,
+    QueryFrequentiComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +34,8 @@ import { DxDataGridModule, DxTemplateModule } from 'devextreme-angular';
     SpecializzazioniComponent,
     CalendarComponent,
     ChartCovidComponent,
-    GridCovidComponent
+    GridCovidComponent,
+    QueryFrequentiComponent
   ]
 })
 export class SharedModule { }

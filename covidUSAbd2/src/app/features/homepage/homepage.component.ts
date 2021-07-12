@@ -7,6 +7,7 @@ import { MainService } from 'src/app/services/main.service';
 import * as moment from 'moment';
 import { HttpClient } from '@angular/common/http';
 import { Risposta } from 'src/app/interface/risposta';
+import { QueryFrequenti } from 'src/app/interface/queryFrequenti';
 
 @Component({
   selector: 'app-homepage',
@@ -28,6 +29,8 @@ export class HomepageComponent implements OnInit {
   dataFineView : string; //data fine per la formattazione nella homepage  (dd:mm:yyyy)
 
   specializzazioni : Integration;  //array contenente tutti i valori degli elementi in specializzazioni.component
+
+  queryFrequenti : QueryFrequenti; //array contenente tutti i valori degli elementi in queryFrequenti.component
 
   states : string[]; //array di stati
   counties : string[];  //array di contee
@@ -113,6 +116,20 @@ export class HomepageComponent implements OnInit {
     this.specializzazioni = specializzazione;
 
     console.log('Homepage specializzazione value', this.specializzazioni)
+  }
+
+  /*al caricamento della componente specializzazioni riceve un array con i valori di default di integration*/
+  getQueryFrequentiFirstTime(queryFrequenti : QueryFrequenti){
+    this.queryFrequenti = queryFrequenti;
+
+    console.log('Homepage query frequenti first time value', this.queryFrequenti)
+  }
+
+  /*per ogni modifica della componente specializzazioni riceve un array con i valori di default di query Frequenti*/
+  getQueryFrequenti(queryFrequenti : QueryFrequenti){
+    this.queryFrequenti = queryFrequenti;
+
+    console.log('Homepage query frequenti  value', this.queryFrequenti)
   }
 
   /*La variabile pagination assume il nome (Covid-19: cases and deaths, Lockdown, Air Quality, Integration) in base alla pagina attiva*/

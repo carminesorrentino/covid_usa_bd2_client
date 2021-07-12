@@ -52,6 +52,13 @@
     padding-bottom: 1em;
 }
 
+.queryPiuFrequenti{
+    border: solid rgba(0, 0, 0, 0.404) 2px;
+    margin-left: 1.5em;
+    width: max-content;
+    padding-bottom: 1em;
+}
+
 /*div calendario*/
 .calendario{
     border: solid rgba(0, 0, 0, 0.404) 2px;

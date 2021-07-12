@@ -96,7 +96,25 @@
                 (specializzazioniHandler)="getSpecializzazioni($event)"
                 (specializzazioneDefaultElement)="getSpecializzazioniFirstTime($event)">
             </app-specializzazioni>
-        </div>        
+        </div>   
+        
+        <!-- QUERY PIU' FREQUENTI -->
+        <div class="queryPiuFrequenti col-md-auto mt-4">
+            
+            <div class="titoloSezione mb-3">
+                Query più frequenti
+            </div>
+
+            <app-query-frequenti
+                [pagination]="this.pagination" 
+                [condizione]="this.selectedItem" 
+                [states]="this.states"
+                [counties]="this.counties"
+                [cities]="this.cities"
+                (queryFrequentiHandler)="getQueryFrequenti($event)"
+                (queryFrequentiDefaultElement)="getQueryFrequentiFirstTime($event)">
+            </app-query-frequenti>
+        </div>   
 
     </div>  <!-- FINE BODY FORM QUERY -->
 

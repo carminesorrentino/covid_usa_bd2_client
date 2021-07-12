@@ -1,0 +1,43 @@
+<p>query-frequenti works!</p>
+
+<div>
+
+    <!-- Criterio di ricerca X TIPO QUERY -->
+    <div class="form-row">
+        <div class="form-row">
+        <div class="mb-3">
+            <label  for="validationServer03"><strong>Tipo query</strong></label>
+            <select class="form-select" aria-label="Default select example" id="TipoQuery" (change)="getQueryFrequenti($event)">
+                <option *ngFor="let item of this?.listaQuery" [value]="item">{{item}}</option>
+            </select>
+        </div>
+        </div>
+    </div>
+
+    <!-- Criterio di ricerca X STATO 1 -->
+    <div class="form-row">
+        <div class="form-row">
+        <div class="mb-3">
+            <label  for="validationServer03"><strong>Seleziona stato (1)</strong></label>
+            <select class="form-select" aria-label="Default select example" id="Stato1" (change)="getQueryFrequenti($event)">
+                <option *ngFor="let item of this?.states?.state" [value]="item">{{item}}</option>
+            </select>
+        </div>
+        </div>
+    </div>
+
+    <!-- Criterio di ricerca X STATO 2 -->
+    <div class="form-row">
+        <div class="form-row">
+        <div class="mb-3">
+            <label  for="validationServer03"><strong>Seleziona stato (2)</strong></label>
+            <select class="form-select" aria-label="Default select example" id="Stato2" (change)="getQueryFrequenti($event)">
+                <option *ngFor="let item of this?.states?.state" [value]="item" selected>{{item}}</option>
+            </select>
+        </div>
+        </div>
+    </div>
+
+</div>
+
+
