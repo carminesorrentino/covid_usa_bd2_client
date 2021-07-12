@@ -139,4 +139,20 @@
     padding-top: 3em;
     padding-bottom: 3em;
   }
+
+  .mostraLoading{
+      visibility: visible;
+      background-color: #252525;
+  }
+
+  .nascondiLoading{
+    visibility: hidden;
+    background-color: #252525;
+  }
+
+/*Div contenente il chart di risposta o la grid*/
+.divResponse{
+    border: solid black 2px;
+    padding: 5em;
+}
   

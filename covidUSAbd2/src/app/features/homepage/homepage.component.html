@@ -109,25 +109,32 @@
     
 </div>
 
-<div id="recentiLabel">
-    <div class="text-center wait" *ngIf="this.queryStatus=='in attesa'">
+<div id="recentiLabel" class="bg-dark">
+    <div class="text-center wait" [ngClass] = "{'mostraLoading' : this.queryStatus == 'in attesa', 'nascondiLoading' : this.queryStatus != 'in attesa'}">
         <div class="spinner-border" role="status">
           <span class="visually-hidden">Loading...</span>
         </div>
     </div>
+
+    <div>
         <app-chart-covid 
-            [covidResult]="this.answer" 
-            [projMap]="this.projMap"
-            *ngIf="this.queryStatus=='completata' && !this.noAnswer"
+        [covidResult]="this.answer" 
+        [projMap]="this.projMap"
+        *ngIf="this.queryStatus=='completata' && !this.noAnswer"
         >
         </app-chart-covid>
+    </div>
+        
+    <div class="divResponse" *ngIf="this.queryStatus=='completata' && !this.noAnswer">
         <app-grid-covid 
-            [covidResult]="this.answer" 
+            [answer]="this.answer" 
             [projMap]="this.projMap"
-            *ngIf="this.queryStatus=='completata' && !this.noAnswer"
-        ></app-grid-covid>
-    <div class="noAnswer" *ngIf="this.noAnswer">
-        <h5 class="mb-4">
+        >
+        </app-grid-covid>
+    </div>
+        
+    <div class="noAnswer" *ngIf="this.noAnswer && queryStatus=='completata'">
+        <h5>
             <figcaption class="blockquote-footer">
                Nessuna risposta. Prova a modificare i criteri di ricerca.
             </figcaption>

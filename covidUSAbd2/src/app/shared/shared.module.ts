@@ -7,6 +7,7 @@ import { SpecializzazioniComponent } from './specializzazioni/specializzazioni.c
 import { CalendarComponent } from './calendar/calendar.component';
 import { GridCovidComponent } from './grid-covid/grid-covid.component';
 import { ChartCovidComponent } from './chart-covid/chart-covid.component';
+import { DxDataGridModule, DxTemplateModule } from 'devextreme-angular';
 
 
 
@@ -21,7 +22,9 @@ import { ChartCovidComponent } from './chart-covid/chart-covid.component';
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    DxDataGridModule,
+    DxTemplateModule
   ],
   exports: [
     ProiezioniComponent,

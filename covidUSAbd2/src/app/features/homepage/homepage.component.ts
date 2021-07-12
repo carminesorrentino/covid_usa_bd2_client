@@ -232,12 +232,14 @@ export class HomepageComponent implements OnInit {
 
       if(result == null || result == []){
         this.noAnswer = true;
+      }else{
+        this.noAnswer = false;
       }
 
       /*Gestione item da visualizzare UI*/
       this.answer = result;
       this.queryStatus = "completata";
-      this.noAnswer = false;
+      
       console.log('Risposta alla chiamata su '+this.service.urlServer+'/covid19', this.answer)
     }, err => {
        /*Gestione item da visualizzare UI*/
@@ -282,12 +284,13 @@ export class HomepageComponent implements OnInit {
 
       if(result == null || result == []){
         this.noAnswer = true;
+      }else{
+        this.noAnswer = false;
       }
 
       /*Gestione item da visualizzare UI*/
       this.answer = result;
       this.queryStatus = "completata";
-      this.noAnswer = false;
       console.log('Risposta alla chiamata su '+this.service.urlServer+'/covid19', this.answer)
     }, err => {
        /*Gestione item da visualizzare UI*/
@@ -335,12 +338,14 @@ export class HomepageComponent implements OnInit {
 
       if(result == null || result == []){
         this.noAnswer = true;
+      }else{
+        this.noAnswer = false;
       }
 
       /*Gestione item da visualizzare UI*/
       this.answer = result;
       this.queryStatus = "completata";
-      this.noAnswer = false;
+
       console.log('Risposta alla chiamata su '+this.service.urlServer+'/covid19', this.answer)
     }, err => {
        /*Gestione item da visualizzare UI*/

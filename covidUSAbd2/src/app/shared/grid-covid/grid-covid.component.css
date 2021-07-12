@@ -1,0 +1,23 @@
+
+/*Titolo della griglia*/
+::ng-deep .long-title{
+    text-align: center;
+    color: white;
+}
+
+/*Titoli colonne*/
+::ng-deep div.dx-datagrid-text-content{
+    color: white;
+}
+
+/*Informazioni interne alla table*/
+::ng-deep .dx-datagrid{
+    color: whitesmoke !important;
+    background-color: #2e2d2d8a;
+}
+
+/*Pulsanti selezione sotto griglia (dx)*/
+::ng-deep .dx-widget.dx-datagrid-pager.dx-pager{
+    color: whitesmoke;
+}
+
