@@ -14,3 +14,11 @@
     cursor: pointer;
 }
 
+.mostraReset{
+    visibility: visible;
+}
+
+.nascondiReset{
+    visibility: hidden;
+}
+
