@@ -22,6 +22,11 @@ export class SpecializzazioniComponent implements OnInit, OnChanges {
   //Restituisce un oggetti Integration con tutti i campi
   integration : Integration;
 
+  //flags
+  visualizzaResetAirQuality : boolean = false; //false = non vedere, true = mostra pulsante
+  visualizzaResetCasiCovid : boolean = false; //false = non vedere, true = mostra pulsante
+  visualizzaResetMortiCovid : boolean = false; //false = non vedere, true = mostra pulsante
+
   constructor(public service : MainService) { }
 
   ngOnInit(): void {
@@ -29,17 +34,17 @@ export class SpecializzazioniComponent implements OnInit, OnChanges {
 
     let newIntegration = {
       airQuality : {
-        minoreDi : 0,
-        maggioreDi : 0
+        minoreDi : undefined,
+        maggioreDi : undefined
       },
       covid : {
         casi : {
-          minoreDi : 0,
-          maggioreDi : 0
+          minoreDi : undefined,
+          maggioreDi : undefined
         },
         morti : {
-          minoreDi : 0,
-          maggioreDi : 0
+          minoreDi : undefined,
+          maggioreDi : undefined
         }
       },
       lockdown : {
@@ -71,12 +76,12 @@ export class SpecializzazioniComponent implements OnInit, OnChanges {
     //console.log(this.integration)
 
     switch($event.srcElement.id){
-      case 'AirQualityMin' : this.checkMin($event); this.integration.airQuality.minoreDi = +($event.srcElement.value); break;
-      case 'AirQualityMax' : this.checkMin($event); this.integration.airQuality.maggioreDi = +($event.srcElement.value); break;
-      case 'CasiMin' : this.checkMin($event); this.integration.covid.casi.minoreDi = +($event.srcElement.value); break;
-      case 'CasiMax' : this.checkMin($event); this.integration.covid.casi.maggioreDi = +($event.srcElement.value); break;
-      case 'MortiMin' : this.checkMin($event); this.integration.covid.morti.minoreDi = +($event.srcElement.value); break;
-      case 'MortiMax' : this.checkMin($event); this.integration.covid.morti.maggioreDi = +($event.srcElement.value); break;
+      case 'AirQualityMin' : this.visualizzaResetAirQuality = true; this.checkMin($event); this.integration.airQuality.minoreDi = +($event.srcElement.value); break;
+      case 'AirQualityMax' : this.visualizzaResetAirQuality = true; this.checkMin($event); this.integration.airQuality.maggioreDi = +($event.srcElement.value); break;
+      case 'CasiMin' : this.visualizzaResetCasiCovid = true; this.checkMin($event); this.integration.covid.casi.minoreDi = +($event.srcElement.value); break;
+      case 'CasiMax' : this.visualizzaResetCasiCovid = true; this.checkMin($event); this.integration.covid.casi.maggioreDi = +($event.srcElement.value); break;
+      case 'MortiMin' : this.visualizzaResetMortiCovid = true; this.checkMin($event); this.integration.covid.morti.minoreDi = +($event.srcElement.value); break;
+      case 'MortiMax' : this.visualizzaResetMortiCovid = true; this.checkMin($event); this.integration.covid.morti.maggioreDi = +($event.srcElement.value); break;
       case 'TipoLockdown' : this.integration.lockdown.tipo = $event.srcElement.value; break;
       case 'SelectedItem' : this.integration.criterioDiRicerca.tipo = this.condizione; this.integration.criterioDiRicerca.value = $event.srcElement.value; break;
     }
@@ -97,6 +102,32 @@ export class SpecializzazioniComponent implements OnInit, OnChanges {
       $event.srcElement.value = 0;
     }
     $event.srcElement.value = Math.floor(+($event.srcElement.value))
+  }
+
+  /*setta nuovamente valori di default per air_quality e modifica la variabile per visualizzare il pulsante (reset) facendolo sparire*/
+  resetAirQuality(){
+
+    this.integration.airQuality.maggioreDi = undefined;
+    this.integration.airQuality.minoreDi = undefined;
+
+    this.visualizzaResetAirQuality = false;
+  }
+
+  /*setta nuovamente valori di default per casi covid e modifica la variabile per visualizzare il pulsante (reset) facendolo sparire*/
+  resetCasiCovid(){
+
+    this.integration.covid.casi.maggioreDi = undefined;
+    this.integration.covid.casi.minoreDi = undefined;
+
+    this.visualizzaResetCasiCovid = false;
+  }
+
+  /*setta nuovamente valori di default per morti covid e modifica la variabile per visualizzare il pulsante (reset) facendolo sparire*/
+  resetMortiCovid(){
+    this.integration.covid.morti.maggioreDi = undefined;
+    this.integration.covid.morti.minoreDi = undefined;
+
+    this.visualizzaResetMortiCovid = false;
   }
 
 

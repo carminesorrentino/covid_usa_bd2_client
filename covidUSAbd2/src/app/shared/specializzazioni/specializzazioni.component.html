@@ -50,24 +50,31 @@
     }"
 >
     <!-- RANGE QUALITA' DELL'ARIA-->
+    
+    <!-- CASI COVID-19-->
     <label class="form-label" for="customRange1"><strong>Qualità dell'aria</strong></label>
+    
 
     <div class="row">
-        <div class="col-6">
+
+        <div class="col-5">
             <div class="mb-3 form">
                 <label for="validationServerUsername">Maggiore di...</label>
                 <div class="input-group">
-                <input type="number" name="AirQualityMax" id="AirQualityMax" class="form-control" min="0" placeholder="0" aria-describedby="inputGroupPrepend3" (change)="getSpecializzazioni($event)">
+                <input type="number" name="AirQualityMax" id="AirQualityMax" class="form-control" min="0" placeholder="0" [value]=this.integration.airQuality.maggioreDi aria-describedby="inputGroupPrepend3" (change)="getSpecializzazioni($event)">
                 </div>
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-5">
             <div class="mb-3 form">
                 <label for="validationServerUsername">Minore di...</label>
                 <div class="input-group">
-                <input type="number" name="AirQualityMin" id="AirQualityMin" class="form-control" min="0" placeholder="0" aria-describedby="inputGroupPrepend3" (change)="getSpecializzazioni($event)">
+                <input type="number" name="AirQualityMin" id="AirQualityMin" class="form-control" min="0" placeholder="0" [value]=this.integration.airQuality.minoreDi aria-describedby="inputGroupPrepend3" (change)="getSpecializzazioni($event)">
                 </div>
             </div>
+        </div>
+        <div class="col-2">
+            <a class="link-danger remove" (click)="resetAirQuality()" *ngIf="visualizzaResetAirQuality">Reset <i class="fa fa-times"></i></a>
         </div>
     </div>
 </div>
@@ -85,42 +92,48 @@
     <label class="form-label" for="customRange1"><strong>Casi Covid-19</strong></label>
 
     <div class="row">
-        <div class="col-6">
+        <div class="col-5">
             <div class="mb-3 form">
                 <label for="validationServerUsername">Maggiore di...</label>
                 <div class="input-group">
-                <input type="number" name="CasiMax" id="CasiMax" class="form-control" min="0" placeholder="0" aria-describedby="inputGroupPrepend3" (change)="getSpecializzazioni($event)">
+                <input type="number" name="CasiMax" id="CasiMax" class="form-control" min="0" [value]=this.integration.covid.casi.maggioreDi placeholder="0" aria-describedby="inputGroupPrepend3" (change)="getSpecializzazioni($event)">
                 </div>
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-5">
             <div class="mb-3 form">
                 <label for="validationServerUsername">Minore di...</label>
                 <div class="input-group">
-                <input type="number" name="CasiMin" id="CasiMin" class="form-control" min="0" placeholder="0" aria-describedby="inputGroupPrepend3" (change)="getSpecializzazioni($event)">
+                <input type="number" name="CasiMin" id="CasiMin" class="form-control" min="0" [value]=this.integration.covid.casi.minoreDi placeholder="0" aria-describedby="inputGroupPrepend3" (change)="getSpecializzazioni($event)">
                 </div>
             </div>
+        </div>
+        <div class="col-2">
+            <a class="link-danger remove" (click)="resetCasiCovid()" *ngIf="visualizzaResetCasiCovid">Reset <i class="fa fa-times"></i></a>
         </div>
     </div>
 
     <!-- MORTI COVID-19-->
     <label class="form-label" for="customRange1"><strong>Morti Covid-19</strong></label>
         <div class="row">
-            <div class="col-6">
+            <div class="col-5">
                 <div class="mb-3 form">
                     <label for="validationServerUsername">Maggiore di...</label>
                     <div class="input-group">
-                    <input type="number" name="MortiMax" id="MortiMax" class="form-control" min="0" placeholder="0" aria-describedby="inputGroupPrepend3" (change)="getSpecializzazioni($event)">
+                    <input type="number" name="MortiMax" id="MortiMax" class="form-control" min="0" [value]=this.integration.covid.morti.maggioreDi placeholder="0" aria-describedby="inputGroupPrepend3" (change)="getSpecializzazioni($event)">
                     </div>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-5">
                 <div class="mb-3 form">
                     <label for="validationServerUsername">Minore di...</label>
                     <div class="input-group">
-                    <input type="number" name="MortiMin" id="MortiMin" class="form-control" min="0" placeholder="0" aria-describedby="inputGroupPrepend3" (change)="getSpecializzazioni($event)">
+                    <input type="number" name="MortiMin" id="MortiMin" class="form-control" min="0" [value]=this.integration.covid.morti.minoreDi placeholder="0" aria-describedby="inputGroupPrepend3" (change)="getSpecializzazioni($event)">
                     </div>
                 </div>
+            </div>
+            <div class="col-2">
+                <a class="link-danger remove" (click)="resetMortiCovid()" *ngIf="visualizzaResetMortiCovid">Reset <i class="fa fa-times"></i></a>
             </div>
         </div>
 </div>
@@ -141,8 +154,8 @@
             <label  for="validationServer03"><strong>Tipo di Lockdown</strong></label>
             <select class="form-select" aria-label="Default select example" id="TipoLockdown" (change)="getSpecializzazioni($event)">
             <option value="Nessuno" selected>Nessuno</option>
-            <option value="Stay at home">Stay at home (Rimani a casa)</option>
-            <option value="Shelter in place">Shelter in place (Spostamenti consentiti solo sul posto)</option>
+            <option value="Stay at home">Stay at home (Zona rossa)</option>
+            <option value="Shelter in place">Shelter in place (Zona arancione)</option>
             <option value="Curfew">Curfew (Coprifuoco)</option>
             </select>
         </div>
