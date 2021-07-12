@@ -33,10 +33,10 @@ export class HomepageComponent implements OnInit {
   counties : string[];  //array di contee
   cities : string[];  //array di città
 
+  answer : Risposta;  //risposta contenete i risultati delle query
+
   //risposte
-  flag_queryStatus : boolean = false;  //false = query non effettuata
-                                       //true = query effettuata
-  covidAnswer : Risposta;
+  queryStatus : string = "non eseguita";  //[non eseguita | in attesa | completata]
   noAnswer : boolean;    //false = non si sono verificati errori o risposte vuote
                                   //true = ricevuta una risposta vuota o un errore
 
@@ -186,8 +186,8 @@ export class HomepageComponent implements OnInit {
   submitForm(form : NgForm){
 
     //gira finché non viene restituita una risposta e il valore 
-    //while(this.flag_queryStatus && !this.noAnswer && !this.covidAnswer)
-    this.flag_queryStatus = true;
+    //while(this.queryStatus && !this.noAnswer && !this.covidAnswer)
+    this.queryStatus = "in attesa";
     this.noAnswer = null;
 
     switch(this.pagination){
@@ -229,13 +229,19 @@ export class HomepageComponent implements OnInit {
     console.log('BODY',body)
 
     this.http.post(this.service.urlServer+'/covid19',body).subscribe(result => {
-      console.log('risultato covid 19',result);
+
       if(result == null || result == []){
         this.noAnswer = true;
       }
-      this.covidAnswer = result;
-      console.log('covidAnswer', this.covidAnswer)
+
+      /*Gestione item da visualizzare UI*/
+      this.answer = result;
+      this.queryStatus = "completata";
+      this.noAnswer = false;
+      console.log('Risposta alla chiamata su '+this.service.urlServer+'/covid19', this.answer)
     }, err => {
+       /*Gestione item da visualizzare UI*/
+      this.queryStatus = "completata";
       this.noAnswer = true;
       console.log('Si è verificato un errore in '+this.service.urlServer+'/covid19: '+err)
     })
@@ -272,17 +278,24 @@ export class HomepageComponent implements OnInit {
 
     console.log('BODY',body)
 
-    this.http.post(this.service.urlServer+'/integrationQuery',body).subscribe(result => {
-      console.log('risultato covid 19',result);
+    this.http.post(this.service.urlServer+'/covid19',body).subscribe(result => {
+
       if(result == null || result == []){
         this.noAnswer = true;
       }
-      this.covidAnswer = result;
-      console.log('covidAnswer', this.covidAnswer)
+
+      /*Gestione item da visualizzare UI*/
+      this.answer = result;
+      this.queryStatus = "completata";
+      this.noAnswer = false;
+      console.log('Risposta alla chiamata su '+this.service.urlServer+'/covid19', this.answer)
     }, err => {
+       /*Gestione item da visualizzare UI*/
+      this.queryStatus = "completata";
       this.noAnswer = true;
-      console.log('Si è verificato un errore in '+this.service.urlServer+'/airquality: '+err)
+      console.log('Si è verificato un errore in '+this.service.urlServer+'/covid19: '+err)
     })
+
   }
 
   /*Invia informazioni e ottiene risposte dal server quando viene inviato un form nella pagina integration*/
@@ -318,16 +331,22 @@ export class HomepageComponent implements OnInit {
 
     console.log('BODY',body)
 
-    this.http.post(this.service.urlServer+'/integrationQuery',body).subscribe(result => {
-      console.log('risultato integration',result);
+    this.http.post(this.service.urlServer+'/covid19',body).subscribe(result => {
+
       if(result == null || result == []){
         this.noAnswer = true;
       }
-      this.covidAnswer = result;
-      console.log('covidAnswer', this.covidAnswer)
+
+      /*Gestione item da visualizzare UI*/
+      this.answer = result;
+      this.queryStatus = "completata";
+      this.noAnswer = false;
+      console.log('Risposta alla chiamata su '+this.service.urlServer+'/covid19', this.answer)
     }, err => {
+       /*Gestione item da visualizzare UI*/
+      this.queryStatus = "completata";
       this.noAnswer = true;
-      console.log('Si è verificato un errore in '+this.service.urlServer+'/airquality: '+err)
+      console.log('Si è verificato un errore in '+this.service.urlServer+'/covid19: '+err)
     })
     
   }

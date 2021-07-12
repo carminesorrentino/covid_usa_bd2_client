@@ -110,15 +110,22 @@
 </div>
 
 <div id="recentiLabel">
-    <div class="text-center wait" *ngIf="this.flag_queryStatus && (!this.covidAnswer && !this.noAnswer)">
+    <div class="text-center wait" *ngIf="this.queryStatus=='in attesa'">
         <div class="spinner-border" role="status">
           <span class="visually-hidden">Loading...</span>
         </div>
-      </div>
-    <h5>
-        <app-chart-covid [covidResult]="this.covidAnswer" [projMap]="this.projMap"></app-chart-covid>
-        <app-grid-covid [covidResult]="this.covidAnswer" [projMap]="this.projMap"></app-grid-covid>
-    </h5>
+    </div>
+        <app-chart-covid 
+            [covidResult]="this.answer" 
+            [projMap]="this.projMap"
+            *ngIf="this.queryStatus=='completata' && !this.noAnswer"
+        >
+        </app-chart-covid>
+        <app-grid-covid 
+            [covidResult]="this.answer" 
+            [projMap]="this.projMap"
+            *ngIf="this.queryStatus=='completata' && !this.noAnswer"
+        ></app-grid-covid>
     <div class="noAnswer" *ngIf="this.noAnswer">
         <h5 class="mb-4">
             <figcaption class="blockquote-footer">
