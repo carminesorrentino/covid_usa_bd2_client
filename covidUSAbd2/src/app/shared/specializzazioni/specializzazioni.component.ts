@@ -71,12 +71,12 @@ export class SpecializzazioniComponent implements OnInit, OnChanges {
     //console.log(this.integration)
 
     switch($event.srcElement.id){
-      case 'AirQualityMin' : this.integration.airQuality.minoreDi = +($event.srcElement.value); break;
-      case 'AirQualityMax' : this.integration.airQuality.maggioreDi = +($event.srcElement.value); break;
-      case 'CasiMin' : this.integration.covid.casi.minoreDi = +($event.srcElement.value); break;
-      case 'CasiMax' : this.integration.covid.casi.maggioreDi = +($event.srcElement.value); break;
-      case 'MortiMin' : this.integration.covid.morti.minoreDi = +($event.srcElement.value); break;
-      case 'MortiMax' : this.integration.covid.morti.maggioreDi = +($event.srcElement.value); break;
+      case 'AirQualityMin' : this.checkMin($event); this.integration.airQuality.minoreDi = +($event.srcElement.value); break;
+      case 'AirQualityMax' : this.checkMin($event); this.integration.airQuality.maggioreDi = +($event.srcElement.value); break;
+      case 'CasiMin' : this.checkMin($event); this.integration.covid.casi.minoreDi = +($event.srcElement.value); break;
+      case 'CasiMax' : this.checkMin($event); this.integration.covid.casi.maggioreDi = +($event.srcElement.value); break;
+      case 'MortiMin' : this.checkMin($event); this.integration.covid.morti.minoreDi = +($event.srcElement.value); break;
+      case 'MortiMax' : this.checkMin($event); this.integration.covid.morti.maggioreDi = +($event.srcElement.value); break;
       case 'TipoLockdown' : this.integration.lockdown.tipo = $event.srcElement.value; break;
       case 'SelectedItem' : this.integration.criterioDiRicerca.tipo = this.condizione; this.integration.criterioDiRicerca.value = $event.srcElement.value; break;
     }
@@ -87,6 +87,16 @@ export class SpecializzazioniComponent implements OnInit, OnChanges {
 
     this.specializzazioniHandler.emit(this.integration);
 
+  }
+
+  /*Se viene inserito un valore minore di 0, setta il campo del form a 0 di default*/
+  /*Arrotonda il risultato, prendendo in considerazione solo la parte intera*/
+  checkMin($event){
+    console.log(+($event.srcElement.value))
+    if(+($event.srcElement.value) < 0){
+      $event.srcElement.value = 0;
+    }
+    $event.srcElement.value = Math.floor(+($event.srcElement.value))
   }
 
 
