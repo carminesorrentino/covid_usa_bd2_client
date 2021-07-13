@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Lockdown } from 'src/app/interface/lockdown';
 import { QueryFrequenti } from 'src/app/interface/queryFrequenti';
+import { MainService } from 'src/app/services/main.service';
 
 @Component({
   selector: 'app-query-frequenti',
@@ -26,7 +28,7 @@ export class QueryFrequentiComponent implements OnInit, OnChanges {
 
   listaLockdown : Lockdown[] = [];
 
-  constructor() { }
+  constructor(public http : HttpClient, protected service : MainService) { }
 
   ngOnInit(): void {
 
@@ -93,6 +95,27 @@ export class QueryFrequentiComponent implements OnInit, OnChanges {
     console.log('queryFrequenti in queryFrequenti.component.ts', this.queryFrequenti)
 
     this.queryFrequentiHandler.emit(this.queryFrequenti);
+
+  }
+
+  getLockdownByState($event){
+
+    console.log('changes in getLockdownByState')
+
+    let body = {
+      state : $event.srcElement.value
+    }
+
+    /*query per ottenere lista degli stati*/
+
+    this.http.post<string[]>(this.service.urlServer+'/chartsQuery/getLockdown',body)
+    .subscribe( (response:string[]) => {
+      //this.states = response;
+      console.log('lockdown in queryFrequenti', response)
+    }, error => {
+      console.log('error',error.error.text)
+    })
+
 
   }
 

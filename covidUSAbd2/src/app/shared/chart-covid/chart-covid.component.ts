@@ -7,7 +7,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 })
 export class ChartCovidComponent implements OnInit, OnChanges {
 
-  @Input() covidResult;
+  @Input() answer;
 
   @Input() projMap;
 
@@ -17,7 +17,7 @@ export class ChartCovidComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(simpleChanges : SimpleChanges){
-    console.log('covid Result',this.covidResult)
+    console.log('covid Result',this.answer)
   }
 
 }

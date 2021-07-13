@@ -9,6 +9,7 @@ import { GridCovidComponent } from './grid-covid/grid-covid.component';
 import { ChartCovidComponent } from './chart-covid/chart-covid.component';
 import { DxDataGridModule, DxTemplateModule } from 'devextreme-angular';
 import { QueryFrequentiComponent } from './query-frequenti/query-frequenti.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -26,7 +27,8 @@ import { QueryFrequentiComponent } from './query-frequenti/query-frequenti.compo
     CommonModule,
     FormsModule,
     DxDataGridModule,
-    DxTemplateModule
+    DxTemplateModule,
+    HttpClientModule
   ],
   exports: [
     ProiezioniComponent,

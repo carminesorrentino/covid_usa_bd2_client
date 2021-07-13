@@ -1,4 +1,5 @@
 export interface Lockdown{
     tipo ?: string,
-    data ?: string
+    data ?: string,
+    contea ?: string
 }

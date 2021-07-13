@@ -17,7 +17,7 @@
         <div class="form-row">
         <div class="mb-3">
             <label  for="validationServer03"><strong>Seleziona stato (1)</strong></label>
-            <select class="form-select" aria-label="Default select example" id="Stato1" (change)="getQueryFrequenti($event)">
+            <select class="form-select" aria-label="Default select example" id="Stato1" (change)="getQueryFrequenti($event)" (change)="getLockdownByState($event)">
                 <option *ngFor="let item of this?.states?.state" [value]="item">{{item}}</option>
             </select>
         </div>

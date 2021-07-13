@@ -36,7 +36,7 @@ export class HomepageComponent implements OnInit {
   counties : string[];  //array di contee
   cities : string[];  //array di città
 
-  answer : Risposta;  //risposta contenete i risultati delle query
+  answer : Risposta;  //risposta contenete i risultati delle query per i primi 4 campi (tutti tranne queryFrequenti)
 
   //risposte
   queryStatus : string = "non eseguita";  //[non eseguita | in attesa | completata]
@@ -212,6 +212,7 @@ export class HomepageComponent implements OnInit {
       case 'Lockdown': this.formLockdown(); break;
       case 'Air quality': this.airQualityForm(); break;
       case 'Integration': this.integrationForm(); break;
+      case 'Query più frequenti': this.queryFrequentiForm(); break;
       default : console.log('dafault case in submitForm(form);'); break;
     }
 
@@ -371,6 +372,54 @@ export class HomepageComponent implements OnInit {
       console.log('Si è verificato un errore in '+this.service.urlServer+'/covid19: '+err)
     })
     
+  }
+
+
+  queryFrequentiForm(){
+
+    switch(this.queryFrequenti.tipo_query){
+      case 'Report Covid-19: casi e morti per ciascuno stato': this.casiMortiPerStatoForm(); break;
+      case 'Confronta i casi di Covid-19 tra due diversi stati': break;
+      case 'Report QoA per stato': break;
+      case 'Visualizza andamento QoA pre/post lockdown': break;
+      case 'Visualizza l\'andamento dei contagi pre/post lockdown': break;
+    }
+
+  }
+
+  /*Invia informazioni e ottiene risposte dal server quando viene inviato un form nella pagina queryFrequenti con query Report Covid-19: casi e morti per ciascuno stato */
+  /*Richiamato in SubmitForm($event)*/
+  casiMortiPerStatoForm(){
+
+    let body = {
+      state : this.queryFrequenti.stato1,
+      byDataInizio : this.dataInizio,
+      byDataFine : this.dataFine
+    }
+
+    console.log('BODY',body)
+
+    this.http.post(this.service.urlServer+'/chartsQuery/getCasesAndDeaths',body).subscribe(result => {
+
+      if(result == null || result == []){
+        this.noAnswer = true;
+      }else{
+        this.noAnswer = false;
+      }
+
+      /*Gestione item da visualizzare UI*/
+      this.answer = result;
+      this.queryStatus = "completata";
+
+      console.log('Risposta alla chiamata su '+this.service.urlServer+'/chartsQuery/getCasesAndDeaths', this.answer)
+    }, err => {
+       /*Gestione item da visualizzare UI*/
+      this.queryStatus = "completata";
+      this.noAnswer = true;
+      console.log('Si è verificato un errore in '+this.service.urlServer+'/chartsQuery/getCasesAndDeaths: '+err)
+    })
+
+
   }
 
 

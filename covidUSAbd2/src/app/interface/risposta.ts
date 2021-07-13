@@ -8,5 +8,8 @@ export interface Risposta{
     cases ?: number,
     deaths ?: number,
     lockdown ?: string,
-    cities_air_quality ?: CityAndAir[]
+    cities_air_quality ?: CityAndAir[],
+    qf_categories ?: string[],
+    qf_cases ?: string[],
+    qf_deaths ?: string[]
 }
