@@ -43,36 +43,41 @@ export class QueryFrequentiComponent implements OnInit, OnChanges {
 
     console.log('lista query', this.listaQuery)
 
-    let newQueryFrequentiObj = {
-      tipo_query : this.listaQuery[0],
-      stato1 : '',
-      stato2 : '',
-      lockdown_stato1: [{
-        tipo : '',
-        data : '',
-      }]
-    }
-
-    this.queryFrequenti = newQueryFrequentiObj;
-
-    this.queryFrequentiDefaultElement.emit(this.queryFrequenti);  //notifica homepage component con integration di default
-
   }
 
   ngOnChanges(simpleChanges : SimpleChanges){
 
     //this.states = simpleChanges.states.currentValue.state;
 
+    console.log('current simple', simpleChanges.states.currentValue.state)
+    console.log('stato 1', this.states[0]);
+
     let newQueryFrequentiObj = {
       tipo_query : this.listaQuery[0],
-      stato1 : this.states[0] || '',
-      stato2 : this.states[this.states.length-1] || '',
+      stato1 :simpleChanges.states.currentValue.state[0],
+      stato2 : simpleChanges.states.currentValue.state[1],
       lockdown_stato1: [{
         tipo : '',
         data : '',
+        contea : ''
       }]
-
     }
+
+      //Costruisce la lista di lockdown di default per il primo stato risultante
+      let body = {
+        state : simpleChanges.states.currentValue.state[0]
+      };
+  
+      /*query per ottenere lista degli stati*/
+  
+      this.http.post<string[]>(this.service.urlServer+'/chartsQuery/getLockdown',body)
+      .subscribe( (response:any) => {
+        //this.states = response;
+        this.queryFrequenti.lockdown_stato1 = response?.lockdown;
+        console.log('lockdown in queryFrequenti', this.queryFrequenti.lockdown_stato1)
+      }, error => {
+        console.log('error',error.error.text)
+      })
 
     this.queryFrequenti = newQueryFrequentiObj;
 
@@ -81,7 +86,6 @@ export class QueryFrequentiComponent implements OnInit, OnChanges {
   }
 
   getQueryFrequenti($event){
-
 
     switch($event.srcElement.id){
       case 'TipoQuery' : this.queryFrequenti.tipo_query = $event.srcElement.value; break;
@@ -109,13 +113,13 @@ export class QueryFrequentiComponent implements OnInit, OnChanges {
     /*query per ottenere lista degli stati*/
 
     this.http.post<string[]>(this.service.urlServer+'/chartsQuery/getLockdown',body)
-    .subscribe( (response:string[]) => {
+    .subscribe( (response:any) => {
       //this.states = response;
-      console.log('lockdown in queryFrequenti', response)
+      this.queryFrequenti.lockdown_stato1 = response?.lockdown;
+      console.log('lockdown in queryFrequenti', this.queryFrequenti.lockdown_stato1)
     }, error => {
       console.log('error',error.error.text)
     })
-
 
   }
 
