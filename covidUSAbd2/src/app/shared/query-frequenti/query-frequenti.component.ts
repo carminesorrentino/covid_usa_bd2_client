@@ -49,8 +49,8 @@ export class QueryFrequentiComponent implements OnInit, OnChanges {
 
     //this.states = simpleChanges.states.currentValue.state;
 
-    console.log('current simple', simpleChanges.states.currentValue.state)
-    console.log('stato 1', this.states[0]);
+    console.log('current simple - stati per cui esiste un lockdown', simpleChanges.states.currentValue.state)
+    
 
     let newQueryFrequentiObj = {
       tipo_query : this.listaQuery[0],

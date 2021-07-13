@@ -32,7 +32,8 @@ export class HomepageComponent implements OnInit {
 
   queryFrequenti : QueryFrequenti; //array contenente tutti i valori degli elementi in queryFrequenti.component
 
-  states : string[]; //array di stati
+  states : string[]; //array di tutti gli stati
+  states_and_lockdown : string[]; //array di stati per cui esiste almeno un lockdown
   counties : string[];  //array di contee
   cities : string[];  //array di città
 
@@ -56,6 +57,18 @@ export class HomepageComponent implements OnInit {
     }, error => {
       console.log('error',error.error.text)
     })
+
+
+     /*query per ottenere lista degli stati che hanno almeno un lockdown*/
+
+     this.http.post<string[]>(this.service.urlServer+'/chartsQuery/getStateWithLockdown',body)
+     .subscribe( (response:string[]) => {
+       this.states_and_lockdown = response;
+       console.log('HOMEPAGE REPONSZEEEE', response)
+       console.log('HOMEPAGE STATES_AND_LOCKDOWN', this.states_and_lockdown)
+     }, error => {
+       console.log('error',error.error.text)
+     })
 
 
     /*query per ottenere lista delle contee*/
@@ -271,6 +284,43 @@ export class HomepageComponent implements OnInit {
   /*Invia informazioni e ottiene risposte dal server quando viene inviato un form nella pagina lockdown*/
   /*Richiamato in SubmitForm($event)*/
   formLockdown(){
+
+    let body = {
+      proiezioni : HomepageComponent.mapToArray(this.projMap),
+      condizioni : {
+        searchBy : {
+          type : this.selectedItem,
+          value : this.specializzazioni.criterioDiRicerca.value
+        },
+        byDataInizio : this.dataInizio,
+        byDataFine : this.dataFine
+      },
+      specializzazioni : {
+        type_lockdown : this.specializzazioni.lockdown.tipo
+      }
+    }
+
+    console.log('BODY',body)
+
+    this.http.post(this.service.urlServer+'/lockdown',body).subscribe(result => {
+
+      if(result == null || result == []){
+        this.noAnswer = true;
+      }else{
+        this.noAnswer = false;
+      }
+
+      /*Gestione item da visualizzare UI*/
+      this.answer = result;
+      this.queryStatus = "completata";
+      
+      console.log('Risposta alla chiamata su '+this.service.urlServer+'/lockdown', this.answer)
+    }, err => {
+       /*Gestione item da visualizzare UI*/
+      this.queryStatus = "completata";
+      this.noAnswer = true;
+      console.log('Si è verificato un errore in '+this.service.urlServer+'/lockdown: '+err)
+    })
 
   }
 

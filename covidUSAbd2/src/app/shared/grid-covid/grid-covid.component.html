@@ -20,6 +20,8 @@
 
     <dxi-column *ngIf="this.projMap.get('deaths').checked" dataField="deaths"></dxi-column>
 
+    <dxi-column *ngIf="this.projMap.get('lockdown').checked" dataField="lockdown"></dxi-column>
+
     <dxi-column *ngIf="this.projMap.get('cities_air_quality').checked" caption="Air quality">
     
     <dxi-column *ngIf="this.projMap.get('cities_air_quality').checked" caption="Città" dataField="cities_air_quality[0].city"></dxi-column>
