@@ -429,7 +429,6 @@ export class HomepageComponent implements OnInit {
 
     switch(this.queryFrequenti.tipo_query){
       case 'Report Covid-19: casi e morti per ciascuno stato': this.casiMortiPerStatoForm(); break;
-      case 'Confronta i casi di Covid-19 tra due diversi stati': break;
       case 'Report QoA per stato': break;
       case 'Visualizza andamento QoA pre/post lockdown': break;
       case 'Visualizza l\'andamento dei contagi pre/post lockdown': break;

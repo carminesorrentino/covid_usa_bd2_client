@@ -11,6 +11,9 @@ import { MainService } from 'src/app/services/main.service';
 })
 export class QueryFrequentiComponent implements OnInit, OnChanges {
 
+  //flag inserimento elementi nella lista delle query la prima volta
+  existsQueries : boolean = false; //false = lista vuota    //true = lista già creata
+
   @Input() pagination : string;
   @Input() condizione : string;
   @Input() states : string[];
@@ -34,21 +37,32 @@ export class QueryFrequentiComponent implements OnInit, OnChanges {
 
     console.log('stati query frequenti',this?.states)
 
-    /*LISTA QUERIES*/
+    /*LISTA QUERIES
     this.listaQuery.push('Report Covid-19: casi e morti per ciascuno stato')
-    this.listaQuery.push('Confronta i casi di Covid-19 tra due diversi stati')
+    //this.listaQuery.push('Confronta i casi di Covid-19 tra due diversi stati')
     this.listaQuery.push('Report QoA per stato')
     this.listaQuery.push('Visualizza andamento QoA pre/post lockdown')
     this.listaQuery.push('Visualizza l\'andamento dei contagi pre/post lockdown')
 
-    console.log('lista query', this.listaQuery)
+    console.log('lista query', this.listaQuery)*/
 
   }
 
   ngOnChanges(simpleChanges : SimpleChanges){
 
-    //this.states = simpleChanges.states.currentValue.state;
+    if(!this.existsQueries){  //non ci sono elementi in listaquery
+      /*LISTA QUERIES*/
+      this.listaQuery.push('Report Covid-19: casi e morti per ciascuno stato')
+      this.listaQuery.push('Confronta i casi di Covid-19 tra due diversi stati')
+      this.listaQuery.push('Report QoA per stato')
+      this.listaQuery.push('Visualizza andamento QoA pre/post lockdown')
+      this.listaQuery.push('Visualizza l\'andamento dei contagi pre/post lockdown')
 
+      this.existsQueries = true;
+    }
+
+    //this.states = simpleChanges.states.currentValue.state;
+    console.log('lista query', this.listaQuery)
     console.log('current simple - stati per cui esiste un lockdown', simpleChanges.states.currentValue.state)
     
 
