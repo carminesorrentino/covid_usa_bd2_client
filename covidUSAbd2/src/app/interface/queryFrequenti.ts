@@ -5,4 +5,5 @@ export interface QueryFrequenti {
     stato1 ?: string,
     stato2 ?: string,
     lockdown_stato1 ?: Lockdown[],
+    lockdown_selezionato ?: Lockdown
 }

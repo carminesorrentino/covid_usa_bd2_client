@@ -76,7 +76,12 @@ export class QueryFrequentiComponent implements OnInit, OnChanges {
         tipo : '',
         data : '',
         contea : ''
-      }]
+      }],
+      lockdown_selezionato : {
+        tipo : '',
+        data : '',
+        contea : ''
+      }
     }
 
       //Costruisce la lista di lockdown di default per il primo stato risultante
@@ -90,6 +95,11 @@ export class QueryFrequentiComponent implements OnInit, OnChanges {
       .subscribe( (response:any) => {
         //this.states = response;
         this.queryFrequenti.lockdown_stato1 = response?.lockdown;
+
+        if(this.queryFrequenti.lockdown_stato1.length > 0){
+          this.queryFrequenti.lockdown_selezionato = this.queryFrequenti.lockdown_stato1[0];
+        }
+
         console.log('lockdown in queryFrequenti', this.queryFrequenti.lockdown_stato1)
       }, error => {
         console.log('error',error.error.text)
@@ -107,12 +117,19 @@ export class QueryFrequentiComponent implements OnInit, OnChanges {
       case 'TipoQuery' : this.queryFrequenti.tipo_query = $event.srcElement.value; break;
       case 'Stato1' : this.queryFrequenti.stato1 = $event.srcElement.value; break;
       case 'Stato2' : this.queryFrequenti.stato2 = $event.srcElement.value; break;
+      case 'Lockdown' : console.log('contea selezionata dio porco', this.queryFrequenti.lockdown_stato1[$event.srcElement.value].contea)
+                        this.queryFrequenti.lockdown_selezionato.contea = this.queryFrequenti.lockdown_stato1[$event.srcElement.value].contea;
+                        this.queryFrequenti.lockdown_selezionato.tipo = this.queryFrequenti.lockdown_stato1[$event.srcElement.value].tipo;
+                        this.queryFrequenti.lockdown_selezionato.data = this.queryFrequenti.lockdown_stato1[$event.srcElement.value].data;
+                        break;
       default : break;
     }
 
-    console.log('specializzazioni id', $event.srcElement.id)
-    console.log('specializzaioni values',$event.srcElement.value);
+    
+    console.log('query frequenti id elemento cliccato', $event.srcElement.id)
+    console.log('query frequenti valore elemento cliccato values',$event.srcElement.value);
     console.log('queryFrequenti in queryFrequenti.component.ts', this.queryFrequenti)
+    console.log('Lockdown in queryFrequenti.component.ts', this.queryFrequenti)
 
     this.queryFrequentiHandler.emit(this.queryFrequenti);
 

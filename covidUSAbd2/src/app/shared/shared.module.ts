@@ -12,6 +12,7 @@ import { QueryFrequentiComponent } from './query-frequenti/query-frequenti.compo
 import { HttpClientModule } from '@angular/common/http';
 import { GridQueryFrequentiComponent } from './grid-query-frequenti/grid-query-frequenti.component';
 import { ChartQoaStateComponent } from './chart-qoa-state/chart-qoa-state.component';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 
 
@@ -32,7 +33,8 @@ import { ChartQoaStateComponent } from './chart-qoa-state/chart-qoa-state.compon
     FormsModule,
     DxDataGridModule,
     DxTemplateModule,
-    HttpClientModule
+    HttpClientModule,
+    HighchartsChartModule
   ],
   exports: [
     ProiezioniComponent,

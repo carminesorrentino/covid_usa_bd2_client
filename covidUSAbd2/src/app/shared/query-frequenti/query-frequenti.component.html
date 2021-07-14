@@ -43,8 +43,8 @@
         <div class="form-row">
         <div class="mb-3">
             <label  for="validationServer03"><strong>Seleziona lockdown</strong></label>
-            <select class="form-select" aria-label="Default select example" id="lockdown" (change)="getQueryFrequenti($event)">
-                <option *ngFor="let item of this?.queryFrequenti.lockdown_stato1" [value]="item.data">{{item?.contea}}, {{item?.data}}</option>
+            <select class="form-select" aria-label="Default select example" id="Lockdown" (change)="getQueryFrequenti($event)">
+            <option *ngFor="let item of this?.queryFrequenti.lockdown_stato1 ! index as i" [value]="i">{{item?.contea}}, {{item?.data}}</option>
             </select>
         </div>
         </div>

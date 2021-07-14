@@ -26,9 +26,9 @@
 
     <dxi-column *ngIf="this?.projMap.get('cities_air_quality')?.checked" caption="Air quality">
     
-    <dxi-column *ngIf="this?.projMap.get('cities_air_quality')?.checked" caption="Città" dataField="cities_air_quality[0].city"></dxi-column>
+    <dxi-column *ngIf="this?.projMap.get('cities_air_quality')?.checked" caption="Città" dataField="cities_air_quality.city"></dxi-column>
 
-    <dxi-column *ngIf="this?.projMap.get('cities_air_quality')?.checked" caption="Valore qualità dell'aria" dataField="cities_air_quality[0].air_quality"></dxi-column>
+    <dxi-column *ngIf="this?.projMap.get('cities_air_quality')?.checked" caption="Valore qualità dell'aria" dataField="cities_air_quality.air_quality"></dxi-column>
 
     </dxi-column>
 
