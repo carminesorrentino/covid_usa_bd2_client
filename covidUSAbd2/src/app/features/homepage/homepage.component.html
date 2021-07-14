@@ -147,21 +147,28 @@
         </div>
     </div>
 
-    <div>
-        <app-chart-covid 
-        [answer]="this.answer" 
-        [projMap]="this.projMap"
-        *ngIf="this.queryStatus=='completata' && !this.noAnswer"
-        >
-        </app-chart-covid>
-    </div>
-        
-    <div class="divResponse" *ngIf="this.queryStatus=='completata' && !this.noAnswer">
+    <div class="divResponse" *ngIf="this.queryStatus=='completata' && !this.noAnswer && this.pagination!=='Query più frequenti'">
         <app-grid-covid 
             [answer]="this.answer" 
             [projMap]="this.projMap"
         >
         </app-grid-covid>
+    </div>
+
+    <div class="divResponse" *ngIf="this.queryStatus=='completata' && !this.noAnswer && this.pagination=='Query più frequenti'">
+        <app-grid-query-frequenti
+            [answer]="this.answer" 
+            [projMap]="this.projMapQueryFrequenti"
+        >
+        </app-grid-query-frequenti>
+    </div>
+
+    <div class="divResponse" *ngIf="this.queryStatus=='completata' && !this.noAnswer && this.pagination=='Query più frequenti'">
+        <app-chart-covid 
+        [answer]="this.answer" 
+        [projMap]="this.projMap"
+        >
+        </app-chart-covid>
     </div>
         
     <div class="noAnswer" *ngIf="this.noAnswer && queryStatus=='completata'">

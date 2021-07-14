@@ -10,6 +10,7 @@ import { ChartCovidComponent } from './chart-covid/chart-covid.component';
 import { DxDataGridModule, DxTemplateModule } from 'devextreme-angular';
 import { QueryFrequentiComponent } from './query-frequenti/query-frequenti.component';
 import { HttpClientModule } from '@angular/common/http';
+import { GridQueryFrequentiComponent } from './grid-query-frequenti/grid-query-frequenti.component';
 
 
 
@@ -21,7 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
     CalendarComponent,
     GridCovidComponent,
     ChartCovidComponent,
-    QueryFrequentiComponent
+    QueryFrequentiComponent,
+    GridQueryFrequentiComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +39,8 @@ import { HttpClientModule } from '@angular/common/http';
     CalendarComponent,
     ChartCovidComponent,
     GridCovidComponent,
-    QueryFrequentiComponent
+    QueryFrequentiComponent,
+    GridQueryFrequentiComponent
   ]
 })
 export class SharedModule { }

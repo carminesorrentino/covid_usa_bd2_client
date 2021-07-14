@@ -18,7 +18,8 @@ export class HomepageComponent implements OnInit {
 
   pagination : string; /*Nome del pagination attivo*/
   
-  projMap = new Map(); /*valori relativi alle proiezioni*/
+  projMap = new Map(); /*valori relativi alle proiezioni per le pagine tranne query frequenti*/
+  projMapQueryFrequenti = new Map(); /*map proiezioni per le query frequenti*/
 
   selectedItem : string = 'Stato'; //valore di default
 
@@ -103,6 +104,7 @@ export class HomepageComponent implements OnInit {
   /*al caricamento della componente proiezioni riceve un map con i valori di default di proiezione*/
   getProiezioniFirstTime(proj : Map<string,Proiezione>){
     this.projMap = proj;
+    this.projMapQueryFrequenti = this.projMap;
     console.log('Map Checkbox in Homepage FIRST TIME [getProiezioni(proj)]',this.projMap)
   }
 
@@ -452,9 +454,21 @@ export class HomepageComponent implements OnInit {
 
       if(result == null || result == []){
         this.noAnswer = true;
-      }else{
+      }else{  //se esiste una risposta
         this.noAnswer = false;
+
+        //setta la proiezione per la griglia
+        this.projMapQueryFrequenti.set('_id',{field: '_id',checked : false});
+        this.projMapQueryFrequenti.set('state',{field: 'state',checked : true});
+        this.projMapQueryFrequenti.set('county',{field: 'county',checked : false});
+        this.projMapQueryFrequenti.set('date',{field: 'date',checked : true});
+        this.projMapQueryFrequenti.set('cases',{field: 'cases',checked : true});
+        this.projMapQueryFrequenti.set('deaths',{field: 'deaths',checked : true});
+        this.projMapQueryFrequenti.set('city',{field: 'city',checked : false});
+        this.projMapQueryFrequenti.set('cities_air_quality',{field: 'cities_air_quality',checked : false});
+        this.projMapQueryFrequenti.set('lockdown',{field: 'lockdown',checked : false});
       }
+        
 
       /*Gestione item da visualizzare UI*/
       this.answer = result;

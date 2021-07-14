@@ -50,6 +50,8 @@ export class QueryFrequentiComponent implements OnInit, OnChanges {
 
   ngOnChanges(simpleChanges : SimpleChanges){
 
+    console.log('simple changes in query frequenti', simpleChanges)
+
     if(!this.existsQueries){  //non ci sono elementi in listaquery
       /*LISTA QUERIES*/
       this.listaQuery.push('Report Covid-19: casi e morti per ciascuno stato')

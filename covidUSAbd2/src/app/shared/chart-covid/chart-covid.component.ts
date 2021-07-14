@@ -30,65 +30,100 @@ export class ChartCovidComponent implements OnInit, OnChanges {
     console.log("categorie",categories)
 
     
-    this.chartOptions={title: {
-      text: ''
-  },
 
-  subtitle: {
-      text: ''
-  },
-
-  yAxis: {
-      title: {
-          text: 'Numero di casi e di morti'
-      }
-      
-  },
-
-  xAxis: {
-      accessibility: {
-          rangeDescription: 'Range:'+ categories[0]+"to "+categories[categories.length-1]
-      },
-      categories: categories
-  },
-
-  legend: {
-      layout: 'vertical',
-      align: 'right',
-      verticalAlign: 'middle'
-  },
-
-  plotOptions: {
-      series: {
-          label: {
-              connectorAllowed: false
-          },
-          //pointStart: 2018
-      }
-  },
-
-  series: [{
-      name: 'Casi',
-      data: casi
-  }, {
-      name: 'Morti',
-      data: morti
-  }],
-
-  responsive: {
-      rules: [{
-          condition: {
-              maxWidth: 500
-          },
-          chartOptions: {
-              legend: {
-                  layout: 'horizontal',
-                  align: 'center',
-                  verticalAlign: 'bottom'
-              }
+    this.chartOptions={
+        
+        title: {
+        text: 'Report casi e morti Covid-19 in '+this?.answer?.result[0]?.state,
+        style: {
+            color: 'white'
           }
-      }]
-  }
+        },
+        
+        chart: {
+            backgroundColor : '#2e2d2d8a'
+        },
+
+        subtitle: {
+        text: 'Il seguente chart mostra l\'andamento della diffusione del Covid-19 nello stato '+this?.answer?.result[0]?.state,
+        style: {
+            color: 'white'
+          }
+        },
+
+        yAxis: {
+        title: {
+            text: 'Numero di casi e di morti',
+            style: { color: 'white' }
+        },
+        labels: {
+            style: {
+            color: 'white'
+            }
+        }  
+        },
+
+        xAxis: {
+        title: {
+            text: 'Range temporale',
+            style: { color: 'white' }
+        },
+        accessibility: {
+            rangeDescription: 'Range:'+ categories[0]+"to "+categories[categories.length-1]
+        },
+        categories: categories,
+        labels: {
+            style: {
+            color: 'white'
+            }
+        }
+        },
+
+        legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle',
+        itemStyle: {
+            color: 'darkgray'
+        },
+        itemHoverStyle: {
+            color: 'white'
+        }
+        },
+
+        plotOptions: {
+        series: {
+            label: {
+                connectorAllowed: false
+            },
+            //pointStart: 2018
+        }
+        },
+
+        series: [{
+        name: 'Casi',
+        data: casi,
+        color : 'orange'
+        }, {
+        name: 'Morti',
+        data: morti,
+        color : 'red'
+        }],
+
+        responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 500
+            },
+            chartOptions: {
+                legend: {
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom'
+                }
+            }
+        }]
+        }
     }
 
     Highcharts.chart('container',this.chartOptions)

@@ -1,0 +1,35 @@
+<p>grid-query-frequenti works!</p>
+
+<div class="long-title mb-3">
+    <h4>Risultati della query</h4>
+</div>
+<dx-data-grid
+    id="gridContainer"
+    [dataSource]="this?.answer?.result"
+    [columnAutoWidth]="true"
+    [showBorders]="true"
+    >
+
+    <dxi-column *ngIf="this?.projMap?.get('_id')?.checked" dataField="_id"></dxi-column>
+
+    <dxi-column *ngIf="this?.projMap.get('state')?.checked" dataField="state" ></dxi-column>
+
+    <dxi-column *ngIf="this?.projMap.get('county')?.checked" dataField="county"></dxi-column>
+
+    <dxi-column *ngIf="this?.projMap.get('date')?.checked" dataField="date"></dxi-column>    
+
+    <dxi-column *ngIf="this?.projMap.get('cases')?.checked" dataField="cases"></dxi-column>
+
+    <dxi-column *ngIf="this?.projMap.get('deaths')?.checked" dataField="deaths"></dxi-column>
+
+    <dxi-column *ngIf="this?.projMap.get('lockdown')?.checked" dataField="lockdown"></dxi-column>
+
+    <dxi-column *ngIf="this?.projMap.get('cities_air_quality')?.checked" caption="Air quality">
+    
+    <dxi-column *ngIf="this?.projMap.get('cities_air_quality')?.checked" caption="Città" dataField="cities_air_quality[0].city"></dxi-column>
+
+    <dxi-column *ngIf="this?.projMap.get('cities_air_quality')?.checked" caption="Valore qualità dell'aria" dataField="cities_air_quality[0].air_quality"></dxi-column>
+
+    </dxi-column>
+
+</dx-data-grid> 
