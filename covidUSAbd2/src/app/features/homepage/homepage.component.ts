@@ -431,7 +431,7 @@ export class HomepageComponent implements OnInit {
 
     switch(this.queryFrequenti.tipo_query){
       case 'Report Covid-19: casi e morti per ciascuno stato': this.casiMortiPerStatoForm(); break;
-      case 'Report QoA per stato': break;
+      case 'Report QoA per stato': this.reportQoAPerStatoForm(); break;
       case 'Visualizza andamento QoA pre/post lockdown': break;
       case 'Visualizza l\'andamento dei contagi pre/post lockdown': break;
     }
@@ -485,6 +485,51 @@ export class HomepageComponent implements OnInit {
 
   }
 
+  /*Invia informazioni e ottiene risposte dal server quando viene inviato un form nella pagina queryFrequenti con query Report QoA per stato */
+  /*Richiamato in SubmitForm($event)*/
+  reportQoAPerStatoForm(){
+
+    let body = {
+      state : this.queryFrequenti.stato1,
+      byDataInizio : this.dataInizio,
+      byDataFinr : this.dataFine
+    }
+
+    console.log('BODY',body)
+
+    this.http.post(this.service.urlServer+'/chartsQuery/getReportAirAverage',body).subscribe(result => {
+
+      if(result == null || result == []){
+        this.noAnswer = true;
+      }else{  //se esiste una risposta
+        this.noAnswer = false;
+
+        //setta la proiezione per la griglia
+        this.projMapQueryFrequenti.set('_id',{field: '_id',checked : false});
+        this.projMapQueryFrequenti.set('state',{field: 'state',checked : true});
+        this.projMapQueryFrequenti.set('county',{field: 'county',checked : false});
+        this.projMapQueryFrequenti.set('date',{field: 'date',checked : true});
+        this.projMapQueryFrequenti.set('cases',{field: 'cases',checked : true});
+        this.projMapQueryFrequenti.set('deaths',{field: 'deaths',checked : true});
+        this.projMapQueryFrequenti.set('city',{field: 'city',checked : false});
+        this.projMapQueryFrequenti.set('cities_air_quality',{field: 'cities_air_quality',checked : false});
+        this.projMapQueryFrequenti.set('lockdown',{field: 'lockdown',checked : false});
+      }
+        
+
+      /*Gestione item da visualizzare UI*/
+      this.answer = result;
+      this.queryStatus = "completata";
+
+      console.log('Risposta alla chiamata su '+this.service.urlServer+'/chartsQuery/getCasesAndDeaths', this.answer)
+    }, err => {
+       /*Gestione item da visualizzare UI*/
+      this.queryStatus = "completata";
+      this.noAnswer = true;
+      console.log('Si è verificato un errore in '+this.service.urlServer+'/chartsQuery/getCasesAndDeaths: '+err)
+    })
+
+  }
 
   /*Converte un map in array*/
   static mapToArray(map : Map<any,any>) {

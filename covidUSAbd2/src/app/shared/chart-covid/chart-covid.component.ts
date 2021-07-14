@@ -12,7 +12,7 @@ export class ChartCovidComponent implements OnInit, OnChanges {
 
   @Input() projMap;
 
-  chartOptions={}
+  chartOptions={}  //proprietà del chart
 
   constructor() { }
 
@@ -34,21 +34,22 @@ export class ChartCovidComponent implements OnInit, OnChanges {
     this.chartOptions={
         
         title: {
-        text: 'Report casi e morti Covid-19 in '+this?.answer?.result[0]?.state,
-        style: {
-            color: 'white'
-          }
+            text: 'Report casi e morti Covid-19 in '+this?.answer?.result[0]?.state,
+            style: {
+                color: 'white'
+            }
         },
         
         chart: {
-            backgroundColor : '#2e2d2d8a'
+            backgroundColor : '#2e2d2d8a',
+            zoomType: 'x'
         },
 
         subtitle: {
-        text: 'Il seguente chart mostra l\'andamento della diffusione del Covid-19 nello stato '+this?.answer?.result[0]?.state,
-        style: {
-            color: 'white'
-          }
+            text: 'Il seguente chart mostra l\'andamento della diffusione del Covid-19 nello stato '+this?.answer?.result[0]?.state,
+            style: {
+                color: 'white'
+            }
         },
 
         yAxis: {
@@ -58,7 +59,7 @@ export class ChartCovidComponent implements OnInit, OnChanges {
         },
         labels: {
             style: {
-            color: 'white'
+                color: 'white'
             }
         }  
         },
@@ -74,7 +75,7 @@ export class ChartCovidComponent implements OnInit, OnChanges {
         categories: categories,
         labels: {
             style: {
-            color: 'white'
+                color: 'white'
             }
         }
         },
@@ -92,12 +93,12 @@ export class ChartCovidComponent implements OnInit, OnChanges {
         },
 
         plotOptions: {
-        series: {
-            label: {
-                connectorAllowed: false
-            },
-            //pointStart: 2018
-        }
+            series: {
+                label: {
+                    connectorAllowed: false
+                },
+                //pointStart: 2018
+            }
         },
 
         series: [{

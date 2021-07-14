@@ -11,6 +11,7 @@ import { DxDataGridModule, DxTemplateModule } from 'devextreme-angular';
 import { QueryFrequentiComponent } from './query-frequenti/query-frequenti.component';
 import { HttpClientModule } from '@angular/common/http';
 import { GridQueryFrequentiComponent } from './grid-query-frequenti/grid-query-frequenti.component';
+import { ChartQoaStateComponent } from './chart-qoa-state/chart-qoa-state.component';
 
 
 
@@ -23,7 +24,8 @@ import { GridQueryFrequentiComponent } from './grid-query-frequenti/grid-query-f
     GridCovidComponent,
     ChartCovidComponent,
     QueryFrequentiComponent,
-    GridQueryFrequentiComponent
+    GridQueryFrequentiComponent,
+    ChartQoaStateComponent
   ],
   imports: [
     CommonModule,
@@ -40,7 +42,8 @@ import { GridQueryFrequentiComponent } from './grid-query-frequenti/grid-query-f
     ChartCovidComponent,
     GridCovidComponent,
     QueryFrequentiComponent,
-    GridQueryFrequentiComponent
+    GridQueryFrequentiComponent,
+    ChartQoaStateComponent
   ]
 })
 export class SharedModule { }

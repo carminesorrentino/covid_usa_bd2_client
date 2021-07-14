@@ -147,6 +147,7 @@
         </div>
     </div>
 
+    <!--GRIGLIA PER LE RISPOSTE ALLE VARIE SECTION TRANNE 'QUERY PIU' FREQUENTI'-->
     <div class="divResponse" *ngIf="this.queryStatus=='completata' && !this.noAnswer && this.pagination!=='Query più frequenti'">
         <app-grid-covid 
             [answer]="this.answer" 
@@ -155,6 +156,7 @@
         </app-grid-covid>
     </div>
 
+    <!--GRIGLIA PER LE RISPOSTE ALLA SECTION 'QUERY PIU' FREQUENTI'-->
     <div class="divResponse" *ngIf="this.queryStatus=='completata' && !this.noAnswer && this.pagination=='Query più frequenti'">
         <app-grid-query-frequenti
             [answer]="this.answer" 
@@ -163,12 +165,22 @@
         </app-grid-query-frequenti>
     </div>
 
-    <div class="divResponse" *ngIf="this.queryStatus=='completata' && !this.noAnswer && this.pagination=='Query più frequenti'">
+    <!--CHART IN RISPOSTA A QUERY PIU' FREQUENTI : REPORT COVID-19 (CASI E MORTI PER CIASCUNO STATO)-->
+    <div class="divResponse" *ngIf="this.queryStatus=='completata' && !this.noAnswer && this.pagination=='Query più frequenti' && this?.queryFrequenti?.tipo_query == 'Report Covid-19: casi e morti per ciascuno stato'">
         <app-chart-covid 
         [answer]="this.answer" 
         [projMap]="this.projMap"
         >
         </app-chart-covid>
+    </div>
+
+    <!--CHART IN RISPOSTA A QUERY PIU' FREQUENTI : REPORT QoA PER STATO-->
+    <div class="divResponse">
+        <app-chart-qoa-state
+        [answer]="this.answer" 
+        [projMap]="this.projMap"
+        >
+        </app-chart-qoa-state>
     </div>
         
     <div class="noAnswer" *ngIf="this.noAnswer && queryStatus=='completata'">
