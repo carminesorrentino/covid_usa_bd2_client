@@ -13,7 +13,7 @@
     </div>
 
     <!-- Criterio di ricerca X STATO 1 -->
-    <div class="form-row" *ngIf="this?.queryFrequenti?.tipo_query !== 'Visualizza valore QoA medio per ciascuna città di ogni stato'">
+    <div class="form-row" *ngIf="this?.queryFrequenti?.tipo_query !== 'Visualizza valore QoA medio per ciascuna città di ogni stato' && this?.queryFrequenti?.tipo_query !== 'Report QoA in base alla città'">
         <div class="form-row">
         <div class="mb-3">
             <label  for="validationServer03"><strong>Seleziona stato</strong></label>
@@ -31,6 +31,18 @@
             <label  for="validationServer03"><strong>Seleziona stato (2)</strong></label>
             <select class="form-select" aria-label="Default select example" id="Stato2" (change)="getQueryFrequenti($event)">
                 <option *ngFor="let item of this?.states?.state" [value]="item" selected>{{item}}</option>
+            </select>
+        </div>
+        </div>
+    </div>
+
+    <!-- Criterio di ricerca X CITTA SELEZIONATA -->
+    <div class="form-row" *ngIf="this?.queryFrequenti?.tipo_query == 'Report QoA in base alla città'">
+        <div class="form-row">
+        <div class="mb-3">
+            <label  for="validationServer03"><strong>Seleziona città</strong></label>
+            <select class="form-select" aria-label="Default select example" id="Città1" (change)="getQueryFrequenti($event)">
+                <option *ngFor="let item of this?.cities?.city" [value]="item">{{item}}</option>
             </select>
         </div>
         </div>

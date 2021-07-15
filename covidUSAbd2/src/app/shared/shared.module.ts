@@ -17,6 +17,7 @@ import { ChartReportQoaLockdownComponent } from './chart-report-qoa-lockdown/cha
 import { ChartAndamentoContagiComponent } from './chart-andamento-contagi/chart-andamento-contagi.component';
 import { ChartPiePercentualiConteeStatoComponent } from './chart-pie-percentuali-contee-stato/chart-pie-percentuali-contee-stato.component';
 import { ChartQoaMedioCityStateComponent } from './chart-qoa-medio-city-state/chart-qoa-medio-city-state.component';
+import { ChartQoaCityComponent } from './chart-qoa-city/chart-qoa-city.component';
 
 
 
@@ -34,7 +35,8 @@ import { ChartQoaMedioCityStateComponent } from './chart-qoa-medio-city-state/ch
     ChartReportQoaLockdownComponent,
     ChartAndamentoContagiComponent,
     ChartPiePercentualiConteeStatoComponent,
-    ChartQoaMedioCityStateComponent
+    ChartQoaMedioCityStateComponent,
+    ChartQoaCityComponent
   ],
   imports: [
     CommonModule,
@@ -57,7 +59,8 @@ import { ChartQoaMedioCityStateComponent } from './chart-qoa-medio-city-state/ch
     ChartReportQoaLockdownComponent,
     ChartAndamentoContagiComponent,
     ChartPiePercentualiConteeStatoComponent,
-    ChartQoaMedioCityStateComponent
+    ChartQoaMedioCityStateComponent,
+    ChartQoaCityComponent
   ]
 })
 export class SharedModule { }

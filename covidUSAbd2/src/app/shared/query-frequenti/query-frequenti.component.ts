@@ -55,6 +55,7 @@ export class QueryFrequentiComponent implements OnInit, OnChanges {
     if(!this.existsQueries){  //non ci sono elementi in listaquery
       /*LISTA QUERIES*/
       this.listaQuery.push('Report Covid-19: casi e morti per ciascuno stato')
+      this.listaQuery.push('Report QoA in base alla città')
       this.listaQuery.push('Percentuale casi Covid-19 in base alle contee di uno stato')
       this.listaQuery.push('Report QoA per stato')
       this.listaQuery.push('Visualizza valore QoA medio per ciascuna città di ogni stato')
@@ -66,13 +67,14 @@ export class QueryFrequentiComponent implements OnInit, OnChanges {
 
     //this.states = simpleChanges.states.currentValue.state;
     //console.log('lista query', this.listaQuery)
-    //console.log('current simple - stati per cui esiste un lockdown', simpleChanges.states.currentValue.state)
+    console.log('current simple query frequenti', simpleChanges)
     
 
     let newQueryFrequentiObj = {
       tipo_query : this.listaQuery[0],
       stato1 : simpleChanges.states.currentValue.state[0],
       stato2 : simpleChanges.states.currentValue.state[1],
+      citta_selezionata : simpleChanges.cities.currentValue.city[0],
       lockdown_stato1: [{
         tipo : '',
         data : '',
@@ -121,6 +123,7 @@ export class QueryFrequentiComponent implements OnInit, OnChanges {
                       break;
                    
       case 'Stato2' : this.queryFrequenti.stato2 = $event.srcElement.value; break;
+      case 'Città1' : this.queryFrequenti.citta_selezionata = $event.srcElement.value; break;
       case 'Lockdown' : console.log('contea selezionata dio porco', this.queryFrequenti.lockdown_stato1[$event.srcElement.value].contea)
                         this.queryFrequenti.lockdown_selezionato.contea = this.queryFrequenti.lockdown_stato1[$event.srcElement.value].contea;
                         this.queryFrequenti.lockdown_selezionato.tipo = this.queryFrequenti.lockdown_stato1[$event.srcElement.value].tipo;

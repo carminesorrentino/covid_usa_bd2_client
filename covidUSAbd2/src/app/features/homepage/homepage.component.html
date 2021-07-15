@@ -174,8 +174,16 @@
         </app-chart-covid>
     </div>
 
+    <!--CHART IN RISPOSTA A QUERY PIU' FREQUENTI : Visualizza andamento QoA medio per ogni città di uno stato-->
+    <div class="divResponse" *ngIf="this.queryStatus=='completata' && !this.noAnswer && this.pagination=='Query più frequenti' && this?.queryFrequenti?.tipo_query == 'Visualizza valore QoA medio per ciascuna città di ogni stato'">
+        <app-chart-qoa-medio-city-state
+        [answer]="this?.answer" 
+        [projMap]="this?.projMapQueryFrequenti"
+        >
+        </app-chart-qoa-medio-city-state>
+    </div>
 
-    <!--CHART GRAFICO A TORTA PERCENTUALE CONTAGI PER CONTEE DI UNO STATO (SECONDA QUERY)-->
+    <!--CHART GRAFICO A TORTA PERCENTUALE CONTAGI PER CONTEE DI UNO STATO (TERZA QUERY)-->
     <div class="divResponse" *ngIf="this.queryStatus=='completata' && !this.noAnswer && this.pagination=='Query più frequenti' && this?.queryFrequenti?.tipo_query == 'Percentuale casi Covid-19 in base alle contee di uno stato'">
         <app-chart-pie-percentuali-contee-stato
             [answer]="this.answer" 
@@ -193,13 +201,13 @@
         </app-chart-qoa-state>
     </div>
 
-    <!--CHART IN RISPOSTA A QUERY PIU' FREQUENTI : Visualizza andamento QoA medio per ogni città di uno stato-->
-    <div class="divResponse" *ngIf="this.queryStatus=='completata' && !this.noAnswer && this.pagination=='Query più frequenti' && this?.queryFrequenti?.tipo_query == 'Visualizza valore QoA medio per ciascuna città di ogni stato'">
-        <app-chart-qoa-medio-city-state
-        [answer]="this?.answer" 
-        [projMap]="this?.projMapQueryFrequenti"
+    <!--CHART IN RISPOSTA A QUERY PIU' FREQUENTI : REPORT QoA PER CITTA-->
+    <div class="divResponse">
+        <app-chart-qoa-city
+        [answer]="this.answer" 
+        [projMap]="this.projMapQueryFrequenti"
         >
-        </app-chart-qoa-medio-city-state>
+        </app-chart-qoa-city>
     </div>
 
     <!--CHART IN RISPOSTA A QUERY PIU' FREQUENTI : Visualizza andamento QoA pre/post lockdown-->
