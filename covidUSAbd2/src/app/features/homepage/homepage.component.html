@@ -175,12 +175,32 @@
     </div>
 
     <!--CHART IN RISPOSTA A QUERY PIU' FREQUENTI : REPORT QoA PER STATO-->
-    <div class="divResponse">
+    <div class="divResponse" *ngIf="this.queryStatus=='completata' && !this.noAnswer && this.pagination=='Query più frequenti' && this?.queryFrequenti?.tipo_query == 'Report QoA per stato'">
         <app-chart-qoa-state
         [answer]="this.answer" 
         [projMap]="this.projMap"
         >
         </app-chart-qoa-state>
+    </div>
+
+    <!--CHART IN RISPOSTA A QUERY PIU' FREQUENTI : Visualizza andamento QoA pre/post lockdown-->
+    <div class="divResponse">
+        <app-chart-report-qoa-lockdown
+        [answer]="this?.answer" 
+        [projMap]="this?.projMap"
+        [dataLockdown]="this?.queryFrequenti?.lockdown_selezionato?.data"
+        >
+        </app-chart-report-qoa-lockdown>
+    </div>
+
+    <!--CHART IN RISPOSTA A QUERY PIU' FREQUENTI : Visualizza andamento contagi pre/post lockdown-->
+    <div class="divResponse">
+        <app-chart-andamento-contagi
+        [answer]="this?.answer" 
+        [projMap]="this?.projMap"
+        [dataLockdown]="this?.queryFrequenti?.lockdown_selezionato?.data"
+        >
+        </app-chart-andamento-contagi>
     </div>
         
     <div class="noAnswer" *ngIf="this.noAnswer && queryStatus=='completata'">

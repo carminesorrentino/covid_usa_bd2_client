@@ -13,6 +13,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { GridQueryFrequentiComponent } from './grid-query-frequenti/grid-query-frequenti.component';
 import { ChartQoaStateComponent } from './chart-qoa-state/chart-qoa-state.component';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { ChartReportQoaLockdownComponent } from './chart-report-qoa-lockdown/chart-report-qoa-lockdown.component';
+import { ChartAndamentoContagiComponent } from './chart-andamento-contagi/chart-andamento-contagi.component';
 
 
 
@@ -26,7 +28,9 @@ import { HighchartsChartModule } from 'highcharts-angular';
     ChartCovidComponent,
     QueryFrequentiComponent,
     GridQueryFrequentiComponent,
-    ChartQoaStateComponent
+    ChartQoaStateComponent,
+    ChartReportQoaLockdownComponent,
+    ChartAndamentoContagiComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +49,9 @@ import { HighchartsChartModule } from 'highcharts-angular';
     GridCovidComponent,
     QueryFrequentiComponent,
     GridQueryFrequentiComponent,
-    ChartQoaStateComponent
+    ChartQoaStateComponent,
+    ChartReportQoaLockdownComponent,
+    ChartAndamentoContagiComponent
   ]
 })
 export class SharedModule { }

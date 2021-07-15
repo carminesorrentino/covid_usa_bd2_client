@@ -11,5 +11,6 @@ export interface Risposta{
     cities_air_quality ?: CityAndAir[],
     qf_categories ?: string[],
     qf_cases ?: string[],
-    qf_deaths ?: string[]
+    qf_deaths ?: string[],
+    qf_air_quality ?: number[]
 }

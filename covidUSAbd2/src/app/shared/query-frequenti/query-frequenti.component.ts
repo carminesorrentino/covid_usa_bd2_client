@@ -50,7 +50,7 @@ export class QueryFrequentiComponent implements OnInit, OnChanges {
 
   ngOnChanges(simpleChanges : SimpleChanges){
 
-    console.log('simple changes in query frequenti', simpleChanges)
+    //console.log('simple changes in query frequenti', simpleChanges)
 
     if(!this.existsQueries){  //non ci sono elementi in listaquery
       /*LISTA QUERIES*/
@@ -64,8 +64,8 @@ export class QueryFrequentiComponent implements OnInit, OnChanges {
     }
 
     //this.states = simpleChanges.states.currentValue.state;
-    console.log('lista query', this.listaQuery)
-    console.log('current simple - stati per cui esiste un lockdown', simpleChanges.states.currentValue.state)
+    //console.log('lista query', this.listaQuery)
+    //console.log('current simple - stati per cui esiste un lockdown', simpleChanges.states.currentValue.state)
     
 
     let newQueryFrequentiObj = {
@@ -115,7 +115,10 @@ export class QueryFrequentiComponent implements OnInit, OnChanges {
 
     switch($event.srcElement.id){
       case 'TipoQuery' : this.queryFrequenti.tipo_query = $event.srcElement.value; break;
-      case 'Stato1' : this.queryFrequenti.stato1 = $event.srcElement.value; break;
+      case 'Stato1' : this.queryFrequenti.stato1 = $event.srcElement.value; //aggiorna stato
+                      this.aggiornaStato(this.queryFrequenti.stato1);
+                      break;
+                   
       case 'Stato2' : this.queryFrequenti.stato2 = $event.srcElement.value; break;
       case 'Lockdown' : console.log('contea selezionata dio porco', this.queryFrequenti.lockdown_stato1[$event.srcElement.value].contea)
                         this.queryFrequenti.lockdown_selezionato.contea = this.queryFrequenti.lockdown_stato1[$event.srcElement.value].contea;
@@ -126,10 +129,10 @@ export class QueryFrequentiComponent implements OnInit, OnChanges {
     }
 
     
-    console.log('query frequenti id elemento cliccato', $event.srcElement.id)
+    /*console.log('query frequenti id elemento cliccato', $event.srcElement.id)
     console.log('query frequenti valore elemento cliccato values',$event.srcElement.value);
     console.log('queryFrequenti in queryFrequenti.component.ts', this.queryFrequenti)
-    console.log('Lockdown in queryFrequenti.component.ts', this.queryFrequenti)
+    console.log('Lockdown in queryFrequenti.component.ts', this.queryFrequenti)*/
 
     this.queryFrequentiHandler.emit(this.queryFrequenti);
 
@@ -154,6 +157,37 @@ export class QueryFrequentiComponent implements OnInit, OnChanges {
       console.log('error',error.error.text)
     })
 
+  }
+
+  aggiornaStato(stato){
+
+    //Costruisce la lista di lockdown di default per il primo stato risultante
+    let body = {
+      state : stato
+    };
+
+    /*query per ottenere lista degli stati*/
+
+    this.http.post<string[]>(this.service.urlServer+'/chartsQuery/getLockdown',body)
+    .subscribe( (response:any) => {
+      //this.states = response;
+      this.queryFrequenti.lockdown_stato1 = response?.lockdown;
+
+      if(this.queryFrequenti.lockdown_stato1.length > 0){
+        this.queryFrequenti.lockdown_selezionato = this.queryFrequenti.lockdown_stato1[0];
+      }
+
+      console.log('lockdown in queryFrequenti', this.queryFrequenti.lockdown_stato1)
+    }, error => {
+      console.log('error',error.error.text)
+    })
+
+
+    console.log('STATO1 SONO QUI', this.queryFrequenti)
+    this.queryFrequenti.lockdown_selezionato.contea = this?.queryFrequenti?.lockdown_stato1[0].contea;
+    this.queryFrequenti.lockdown_selezionato.data = this?.queryFrequenti?.lockdown_stato1[0].data;
+    this.queryFrequenti.lockdown_selezionato.tipo = this?.queryFrequenti?.lockdown_stato1[0].tipo;
+    console.log('POST ASSEGNAZIONE STATO1', this.queryFrequenti.lockdown_stato1[0])
   }
 
 }

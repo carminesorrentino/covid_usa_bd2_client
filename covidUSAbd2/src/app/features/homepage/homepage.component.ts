@@ -433,7 +433,7 @@ export class HomepageComponent implements OnInit {
       case 'Report Covid-19: casi e morti per ciascuno stato': this.casiMortiPerStatoForm(); break;
       case 'Report QoA per stato': this.reportQoAPerStatoForm(); break;
       case 'Visualizza andamento QoA pre/post lockdown': this.andamentoQoALockdownForm(); break;
-      case 'Visualizza l\'andamento dei contagi pre/post lockdown': break;
+      case 'Visualizza l\'andamento dei contagi pre/post lockdown': this.andamentoContagiLockdownForm(); break;
     }
 
   }
@@ -545,6 +545,53 @@ export class HomepageComponent implements OnInit {
 
     console.log('BODY',body)
 
+    this.http.post(this.service.urlServer+'/chartsQuery/getReportAirQuality',body).subscribe(result => {
+
+      if(result == null || result == []){
+        this.noAnswer = true;
+      }else{  //se esiste una risposta
+        this.noAnswer = false;
+
+        //setta la proiezione per la griglia
+        this.projMapQueryFrequenti.set('_id',{field: '_id',checked : false});
+        this.projMapQueryFrequenti.set('state',{field: 'state',checked : true});
+        this.projMapQueryFrequenti.set('county',{field: 'county',checked : true});
+        this.projMapQueryFrequenti.set('date',{field: 'date',checked : true});
+        this.projMapQueryFrequenti.set('cases',{field: 'cases',checked : false});
+        this.projMapQueryFrequenti.set('deaths',{field: 'deaths',checked : false});
+        this.projMapQueryFrequenti.set('city',{field: 'city',checked : false});
+        this.projMapQueryFrequenti.set('cities_air_quality',{field: 'cities_air_quality',checked : true});
+        this.projMapQueryFrequenti.set('lockdown',{field: 'lockdown',checked : false});
+      }
+
+      /*Gestione item da visualizzare UI*/
+      this.answer = result;
+      this.queryStatus = "completata";
+
+      console.log('Risposta alla chiamata su '+this.service.urlServer+'/chartsQuery/getReportAirQuality', this.answer)
+    }, err => {
+       /*Gestione item da visualizzare UI*/
+      this.queryStatus = "completata";
+      this.noAnswer = true;
+      console.log('Si è verificato un errore in '+this.service.urlServer+'/chartsQuery/getReportAirQuality: '+err)
+    })
+
+  }
+
+  /*Invia informazioni e ottiene risposte dal server quando viene inviato un form nella pagina queryFrequenti con query Report casi e morti pre/post lockdown*/
+  /*Richiamato in SubmitForm($event)*/
+  andamentoContagiLockdownForm(){
+    console.log('query frequenti', this.queryFrequenti);
+    
+    let body = {
+      state : this.queryFrequenti.stato1,
+      county : this.queryFrequenti?.lockdown_selezionato.contea,
+      date : this.queryFrequenti?.lockdown_selezionato.data,
+      lockdown : this.queryFrequenti?.lockdown_selezionato.tipo
+    }
+
+    console.log('BODY',body)
+
     this.http.post(this.service.urlServer+'/chartsQuery/getReportCases',body).subscribe(result => {
 
       if(result == null || result == []){
@@ -568,14 +615,13 @@ export class HomepageComponent implements OnInit {
       this.answer = result;
       this.queryStatus = "completata";
 
-      console.log('Risposta alla chiamata su '+this.service.urlServer+'/chartsQuery/getReportAirAverage', this.answer)
+      console.log('Risposta alla chiamata su '+this.service.urlServer+'/chartsQuery/getReportCases', this.answer)
     }, err => {
        /*Gestione item da visualizzare UI*/
       this.queryStatus = "completata";
       this.noAnswer = true;
-      console.log('Si è verificato un errore in '+this.service.urlServer+'/chartsQuery/getReportAirAverage: '+err)
+      console.log('Si è verificato un errore in '+this.service.urlServer+'/chartsQuery/getReportCases: '+err)
     })
-
   }
 
   /*Converte un map in array*/
