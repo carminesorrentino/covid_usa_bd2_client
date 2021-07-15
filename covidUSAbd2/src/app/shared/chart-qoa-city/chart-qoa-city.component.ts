@@ -24,81 +24,95 @@ export class ChartQoaCityComponent implements OnInit, OnChanges {
   ngOnChanges(simpleChanges : SimpleChanges){
 
     this.chartOptions = {
+        
+        title: {
+            text: 'Report QoA in '+this?.answer?.result[0].cities_air_quality.city,
+            style: {
+                color: 'white'
+            }
+        },
+        
+        chart: {
+            backgroundColor : '#2e2d2d8a',
+            zoomType: 'x'
+        },
 
-      chart: {
-        type: 'column',
-        backgroundColor : '#2e2d2d8a',
-    },
-    title: {
-        text: 'Report qualità dell\'aria delle città dello stato: '+this?.answer?.result[0]?.state,
-        style: {
-          color: 'white'
-      }
-    },
-    subtitle: {
-        text: ''
-    },
-    accessibility: {
-        announceNewData: {
-            enabled: true
-        }
-    },
-    xAxis: {
-        type: 'category',
+        subtitle: {
+            text: 'Il seguente chart mostra l\'andamento della QoA della città di '+this?.answer?.result[0].cities_air_quality.city,
+            style: {
+                color: 'white'
+            }
+        },
+
+        yAxis: {
         title: {
-          text: 'Date',
-          style: { color: 'white' }
-      },
-      labels: {
-        style: {
-            color: 'white'
-        }
-    } 
-    },
-    yAxis: {
-        title: {
-            text: 'Valore qualità dell\'aria',
+            text: 'Qualità dell\'aria',
             style: { color: 'white' }
         },
         labels: {
-          style: {
-              color: 'white'
-          }
-      } 
-    },
-    legend: {
-        enabled: false
-    },
-    plotOptions: {
-        series: {
-            borderWidth: 0,
-            dataLabels: {
-                enabled: true,
-                format: '{point.y:.2f}',
-                style: {
-                  color: 'white'
-              }
+            style: {
+                color: 'white'
+            }
+        }  
+        },
+
+        xAxis: {
+        title: {
+            text: 'Data',
+            style: { color: 'white' }
+        },
+        accessibility: {
+            rangeDescription: 'Range:'+ this.answer.qf_categories[0]+"to "+this.answer.qf_categories[this.answer.qf_categories.length-1]
+        },
+        categories: this.answer.qf_categories,
+        labels: {
+            style: {
+                color: 'white'
             }
         }
-    },
+        },
 
- 
-
-    tooltip: {
-        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b><br/>'
-    },
-
- 
-
-    series: [
-        {
-            name: "Qualità dell\'aria",
-            colorByPoint: true,
-            data: this.answer?.qf_air_quality
+        legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle',
+        itemStyle: {
+            color: 'darkgray'
+        },
+        itemHoverStyle: {
+            color: 'white'
         }
-    ]
+        },
 
+        plotOptions: {
+            series: {
+                label: {
+                    connectorAllowed: false
+                },
+                //pointStart: 2018
+            }
+        },
+
+        series: [{
+        name: 'Qualità dell\'aria',
+        data: this.answer.qf_air_quality,
+        color : 'green'
+        }],
+
+        responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 500
+            },
+            chartOptions: {
+                legend: {
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom'
+                }
+            }
+        }]
+        }
     }
     
 
