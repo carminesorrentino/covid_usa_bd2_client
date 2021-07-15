@@ -12,5 +12,11 @@ export interface Risposta{
     qf_categories ?: string[],
     qf_cases ?: string[],
     qf_deaths ?: string[],
-    qf_air_quality ?: number[]
+    qf_air_quality ?: number[],
+    data ?: Data[]
+}
+
+interface Data {
+    name ?: string,
+    y ?: number
 }

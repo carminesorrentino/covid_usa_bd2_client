@@ -431,6 +431,7 @@ export class HomepageComponent implements OnInit {
 
     switch(this.queryFrequenti.tipo_query){
       case 'Report Covid-19: casi e morti per ciascuno stato': this.casiMortiPerStatoForm(); break;
+      case 'Percentuale casi Covid-19 in base alle contee di uno stato': this.percentualeCasiCovidPerStatoForm(); break;
       case 'Report QoA per stato': this.reportQoAPerStatoForm(); break;
       case 'Visualizza andamento QoA pre/post lockdown': this.andamentoQoALockdownForm(); break;
       case 'Visualizza l\'andamento dei contagi pre/post lockdown': this.andamentoContagiLockdownForm(); break;
@@ -482,6 +483,49 @@ export class HomepageComponent implements OnInit {
       console.log('Si è verificato un errore in '+this.service.urlServer+'/chartsQuery/getCasesAndDeaths: '+err)
     })
 
+
+  }
+
+  /*Invia informazioni e ottiene risposte dal server quando viene inviato un form nella pagina queryFrequenti con query Percentuale casi per contee di uno stato */
+  /*Richiamato in SubmitForm($event)*/
+  percentualeCasiCovidPerStatoForm(){
+
+    let body = {
+      state : this.queryFrequenti.stato1
+    }
+
+    console.log('BODY',body)
+
+    this.http.post(this.service.urlServer+'/chartsQuery/getPercentCasesByState',body).subscribe(result => {
+
+      if(result == null || result == []){
+        this.noAnswer = true;
+      }else{  //se esiste una risposta
+        this.noAnswer = false;
+
+        //setta la proiezione per la griglia
+        this.projMapQueryFrequenti.set('_id',{field: '_id',checked : false});
+        this.projMapQueryFrequenti.set('state',{field: 'state',checked : true});
+        this.projMapQueryFrequenti.set('county',{field: 'county',checked : true});
+        this.projMapQueryFrequenti.set('date',{field: 'date',checked : false});
+        this.projMapQueryFrequenti.set('cases',{field: 'cases',checked : true});
+        this.projMapQueryFrequenti.set('deaths',{field: 'deaths',checked : false});
+        this.projMapQueryFrequenti.set('city',{field: 'city',checked : false});
+        this.projMapQueryFrequenti.set('cities_air_quality',{field: 'cities_air_quality',checked : false});
+        this.projMapQueryFrequenti.set('lockdown',{field: 'lockdown',checked : false});
+      }
+        
+      /*Gestione item da visualizzare UI*/
+      this.answer = result;
+      this.queryStatus = "completata";
+
+      console.log('Risposta alla chiamata su '+this.service.urlServer+'/chartsQuery/getPercentCasesByState', this.answer)
+    }, err => {
+       /*Gestione item da visualizzare UI*/
+      this.queryStatus = "completata";
+      this.noAnswer = true;
+      console.log('Si è verificato un errore in '+this.service.urlServer+'/chartsQuery/getPercentCasesByState: '+err)
+    })
 
   }
 

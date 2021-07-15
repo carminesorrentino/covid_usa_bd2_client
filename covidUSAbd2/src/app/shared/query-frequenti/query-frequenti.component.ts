@@ -55,7 +55,7 @@ export class QueryFrequentiComponent implements OnInit, OnChanges {
     if(!this.existsQueries){  //non ci sono elementi in listaquery
       /*LISTA QUERIES*/
       this.listaQuery.push('Report Covid-19: casi e morti per ciascuno stato')
-      this.listaQuery.push('Confronta i casi di Covid-19 tra due diversi stati')
+      this.listaQuery.push('Percentuale casi Covid-19 in base alle contee di uno stato')
       this.listaQuery.push('Report QoA per stato')
       this.listaQuery.push('Visualizza andamento QoA pre/post lockdown')
       this.listaQuery.push('Visualizza l\'andamento dei contagi pre/post lockdown')
