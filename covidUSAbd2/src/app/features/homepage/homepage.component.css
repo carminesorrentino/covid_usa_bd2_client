@@ -58,6 +58,10 @@
     padding-bottom: 1em;
 }
 
+.espandiQueryPiuFrequenti{
+    width: 92%;
+}
+
 /*div calendario*/
 .calendario{
     border: solid rgba(0, 0, 0, 0.404) 2px;

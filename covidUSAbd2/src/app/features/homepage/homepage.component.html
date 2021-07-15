@@ -10,7 +10,11 @@
 
 
         <!-- QUERY PIU' FREQUENTI -->
-        <div class="queryPiuFrequenti col-md-auto mt-4" *ngIf="this.pagination == 'Query più frequenti'">
+        <div class="queryPiuFrequenti col-md-auto mt-4" *ngIf="this.pagination == 'Query più frequenti'"
+            [ngClass] = "{
+                'espandiQueryPiuFrequenti' : this?.queryFrequenti?.tipo_query == 'Visualizza andamento QoA pre/post lockdown' || this?.queryFrequenti?.tipo_query == 'Visualizza l\'andamento dei contagi pre/post lockdown'
+            }"
+        >
             
             <div class="titoloSezione mb-3">
                 Query più frequenti
