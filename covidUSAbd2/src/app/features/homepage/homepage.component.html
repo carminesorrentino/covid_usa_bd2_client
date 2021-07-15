@@ -51,20 +51,13 @@
         </div>
 
             <!-- Data inizio ricerca (primo calendario) -->
-            <div class="calendario col-md-auto mt-4">
+            <div class="calendario col-md-auto mt-4"
+            *ngIf="(this?.queryFrequenti?.tipo_query!=='Visualizza andamento QoA pre/post lockdown' && this?.queryFrequenti?.tipo_query !== 'Visualizza l\'andamento dei contagi pre/post lockdown') || this.pagination !== 'Query più frequenti'"
+            >
                 
-                <div class="titoloSezione calendar"
-                *ngIf="(this?.queryFrequenti?.tipo_query!=='Visualizza andamento QoA pre/post lockdown' && this?.queryFrequenti?.tipo_query !== 'Visualizza l\'andamento dei contagi pre/post lockdown' && this.pagination == 'Query più frequenti') || this.pagination !== 'Query più frequenti'"
-                >
+                <div class="titoloSezione calendar">
                     Data inizio ricerca
                 </div>
-
-                <div class="titoloSezione calendar"
-                *ngIf="(this?.queryFrequenti?.tipo_query=='Visualizza andamento QoA pre/post lockdown' || this?.queryFrequenti?.tipo_query == 'Visualizza l\'andamento dei contagi pre/post lockdown') && this.pagination == 'Query più frequenti'"
-                >
-                    Inserisci data pre/post lockdown
-                </div>
-
 
                 <kendo-calendar [weekNumber]="false" (valueChange)="getDataInizio($event)">
                     <app-calendar></app-calendar>
@@ -184,7 +177,7 @@
     </div>
 
     <!--CHART IN RISPOSTA A QUERY PIU' FREQUENTI : Visualizza andamento QoA pre/post lockdown-->
-    <div class="divResponse">
+    <div class="divResponse" *ngIf="this.queryStatus=='completata' && !this.noAnswer && this.pagination=='Query più frequenti' && this?.queryFrequenti?.tipo_query == 'Visualizza andamento QoA pre/post lockdown'">
         <app-chart-report-qoa-lockdown
         [answer]="this?.answer" 
         [projMap]="this?.projMap"
@@ -194,7 +187,7 @@
     </div>
 
     <!--CHART IN RISPOSTA A QUERY PIU' FREQUENTI : Visualizza andamento contagi pre/post lockdown-->
-    <div class="divResponse">
+    <div class="divResponse" *ngIf="this.queryStatus=='completata' && !this.noAnswer && this.pagination=='Query più frequenti' && this?.queryFrequenti?.tipo_query == 'Visualizza l\'andamento dei contagi pre/post lockdown'">
         <app-chart-andamento-contagi
         [answer]="this?.answer" 
         [projMap]="this?.projMap"

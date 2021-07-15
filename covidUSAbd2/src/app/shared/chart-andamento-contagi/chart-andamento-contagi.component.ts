@@ -41,7 +41,7 @@ export class ChartAndamentoContagiComponent implements OnInit, OnChanges {
         backgroundColor : '#2e2d2d8a',
     },
     title: {
-        text: 'Report andamento contagi pre/post lockdown: '+this?.answer?.result[0]?.state,
+        text: 'Report andamento contagi pre/post lockdown della contea '+this?.answer?.result[0]?.county+' dello stato '+this?.answer?.result[0]?.state,
         style: {
           color: 'white'
       }
@@ -58,7 +58,7 @@ export class ChartAndamentoContagiComponent implements OnInit, OnChanges {
         categories: this?.answer?.qf_categories,
         type: 'category',
         title: {
-          text: 'Città dello stato: '+this?.answer?.result[0]?.state,
+          text: 'Data',
           style: { color: 'white' }
       },
       labels: {
@@ -75,7 +75,7 @@ export class ChartAndamentoContagiComponent implements OnInit, OnChanges {
     },
     yAxis: {
         title: {
-            text: 'Valore qualità dell\'aria',
+            text: 'Contagi',
             style: { color: 'white' }
         },
         labels: {
@@ -120,7 +120,7 @@ export class ChartAndamentoContagiComponent implements OnInit, OnChanges {
     }
     
 
-    Highcharts.chart('container',this.chartOptions)
+    Highcharts.chart('container2',this.chartOptions)
 
 
   }

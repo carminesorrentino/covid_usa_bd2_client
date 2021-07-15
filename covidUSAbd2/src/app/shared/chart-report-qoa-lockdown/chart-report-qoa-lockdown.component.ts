@@ -42,7 +42,7 @@ export class ChartReportQoaLockdownComponent implements OnInit, OnChanges {
         backgroundColor : '#2e2d2d8a',
     },
     title: {
-        text: 'Report qualità dell\'aria delle città dello stato: '+this?.answer?.result[0]?.state,
+        text: 'Report qualità dell\'aria della contea '+this?.answer?.result[0]?.county+' dello stato '+this?.answer?.result[0]?.state,
         style: {
           color: 'white'
       }
@@ -59,7 +59,7 @@ export class ChartReportQoaLockdownComponent implements OnInit, OnChanges {
         categories: this?.answer?.qf_categories,
         type: 'category',
         title: {
-          text: 'Città dello stato: '+this?.answer?.result[0]?.state,
+          text: 'Data',
           style: { color: 'white' }
       },
       labels: {
