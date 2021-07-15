@@ -57,6 +57,7 @@ export class QueryFrequentiComponent implements OnInit, OnChanges {
       this.listaQuery.push('Report Covid-19: casi e morti per ciascuno stato')
       this.listaQuery.push('Percentuale casi Covid-19 in base alle contee di uno stato')
       this.listaQuery.push('Report QoA per stato')
+      this.listaQuery.push('Visualizza valore QoA medio per ciascuna città di ogni stato')
       this.listaQuery.push('Visualizza andamento QoA pre/post lockdown')
       this.listaQuery.push('Visualizza l\'andamento dei contagi pre/post lockdown')
 
@@ -70,7 +71,7 @@ export class QueryFrequentiComponent implements OnInit, OnChanges {
 
     let newQueryFrequentiObj = {
       tipo_query : this.listaQuery[0],
-      stato1 :simpleChanges.states.currentValue.state[0],
+      stato1 : simpleChanges.states.currentValue.state[0],
       stato2 : simpleChanges.states.currentValue.state[1],
       lockdown_stato1: [{
         tipo : '',

@@ -1,12 +1,17 @@
-import { Component, OnChanges, Input, SimpleChanges } from '@angular/core';
+import { Component, OnChanges, SimpleChanges, Input } from '@angular/core';
 import * as Highcharts from 'highcharts';
 
+interface ExtendedPoint extends Highcharts.Point {
+  dataLabel;
+  graphic;
+}
+
 @Component({
-  selector: 'app-chart-qoa-state',
-  templateUrl: './chart-qoa-state.component.html',
-  styleUrls: ['./chart-qoa-state.component.css']
+  selector: 'app-chart-qoa-medio-city-state',
+  templateUrl: './chart-qoa-medio-city-state.component.html',
+  styleUrls: ['./chart-qoa-medio-city-state.component.css']
 })
-export class ChartQoaStateComponent implements OnChanges {
+export class ChartQoaMedioCityStateComponent implements OnChanges  {
 
   @Input() answer;
 
@@ -16,7 +21,7 @@ export class ChartQoaStateComponent implements OnChanges {
 
   highcharts_name = Highcharts; //passa il riferimento alla variabile highcharts_name
 
-  constructor(){}
+  constructor() { }
 
   ngOnChanges(simpleChanges : SimpleChanges){
 
@@ -27,7 +32,7 @@ export class ChartQoaStateComponent implements OnChanges {
         backgroundColor : '#2e2d2d8a',
     },
     title: {
-        text: 'Report qualità dell\'aria delle città dello stato: '+this?.answer?.result[0]?.state,
+        text: 'Media QoA per le città dei vari stati',
         style: {
           color: 'white'
       }
@@ -43,7 +48,7 @@ export class ChartQoaStateComponent implements OnChanges {
     xAxis: {
         type: 'category',
         title: {
-          text: 'Città dello stato: '+this?.answer?.result[0]?.state,
+          text: 'Città',
           style: { color: 'white' }
       },
       labels: {
@@ -54,7 +59,7 @@ export class ChartQoaStateComponent implements OnChanges {
     },
     yAxis: {
         title: {
-            text: 'Valore qualità dell\'aria',
+            text: 'Valore medio QoA',
             style: { color: 'white' }
         },
         labels: {
@@ -97,11 +102,9 @@ export class ChartQoaStateComponent implements OnChanges {
     ]
 
     }
-    
 
-    Highcharts.chart('container',this.chartOptions)
+  Highcharts.chart('container',this.chartOptions)
 
-
-  }
+}
 
 }

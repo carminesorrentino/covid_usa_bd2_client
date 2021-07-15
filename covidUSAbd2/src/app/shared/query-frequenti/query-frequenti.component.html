@@ -13,7 +13,7 @@
     </div>
 
     <!-- Criterio di ricerca X STATO 1 -->
-    <div class="form-row">
+    <div class="form-row" *ngIf="this?.queryFrequenti?.tipo_query !== 'Visualizza valore QoA medio per ciascuna città di ogni stato'">
         <div class="form-row">
         <div class="mb-3">
             <label  for="validationServer03"><strong>Seleziona stato</strong></label>

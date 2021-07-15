@@ -12,7 +12,8 @@
         <!-- QUERY PIU' FREQUENTI -->
         <div class="queryPiuFrequenti col-md-auto mt-4" *ngIf="this.pagination == 'Query più frequenti'"
             [ngClass] = "{
-                'espandiQueryPiuFrequenti' : this?.queryFrequenti?.tipo_query == 'Visualizza andamento QoA pre/post lockdown' || this?.queryFrequenti?.tipo_query == 'Visualizza l\'andamento dei contagi pre/post lockdown' || this?.queryFrequenti?.tipo_query == 'Percentuale casi Covid-19 in base alle contee di uno stato' 
+                'espandiQueryPiuFrequenti' : this?.queryFrequenti?.tipo_query == 'Visualizza andamento QoA pre/post lockdown' || this?.queryFrequenti?.tipo_query == 'Visualizza l\'andamento dei contagi pre/post lockdown' 
+                            || this?.queryFrequenti?.tipo_query == 'Percentuale casi Covid-19 in base alle contee di uno stato' || this?.queryFrequenti?.tipo_query == 'Visualizza valore QoA medio per ciascuna città di ogni stato'
             }"
         >
             
@@ -56,7 +57,8 @@
 
             <!-- Data inizio ricerca (primo calendario) -->
             <div class="calendario col-md-auto mt-4"
-            *ngIf="(this?.queryFrequenti?.tipo_query!=='Visualizza andamento QoA pre/post lockdown' && this?.queryFrequenti?.tipo_query !== 'Visualizza l\'andamento dei contagi pre/post lockdown' && this?.queryFrequenti?.tipo_query !== 'Percentuale casi Covid-19 in base alle contee di uno stato' ) || this.pagination !== 'Query più frequenti'"
+            *ngIf="(this?.queryFrequenti?.tipo_query!=='Visualizza andamento QoA pre/post lockdown' && this?.queryFrequenti?.tipo_query !== 'Visualizza l\'andamento dei contagi pre/post lockdown' 
+                    && this?.queryFrequenti?.tipo_query !== 'Percentuale casi Covid-19 in base alle contee di uno stato' && this?.queryFrequenti?.tipo_query !== 'Visualizza valore QoA medio per ciascuna città di ogni stato' ) || this.pagination !== 'Query più frequenti'"
             >
                 
                 <div class="titoloSezione calendar">
@@ -83,7 +85,8 @@
 
             <!-- Data fine ricerca (secondo calendario) -->
             <div class="calendario col-md-auto mt-4"
-                *ngIf="(this?.queryFrequenti?.tipo_query!=='Visualizza andamento QoA pre/post lockdown' && this?.queryFrequenti?.tipo_query !== 'Visualizza l\'andamento dei contagi pre/post lockdown' && this?.queryFrequenti?.tipo_query !== 'Percentuale casi Covid-19 in base alle contee di uno stato' ) || this.pagination !== 'Query più frequenti'"
+                *ngIf="(this?.queryFrequenti?.tipo_query!=='Visualizza andamento QoA pre/post lockdown' && this?.queryFrequenti?.tipo_query !== 'Visualizza l\'andamento dei contagi pre/post lockdown' 
+                    && this?.queryFrequenti?.tipo_query !== 'Percentuale casi Covid-19 in base alle contee di uno stato' && this?.queryFrequenti?.tipo_query !== 'Visualizza valore QoA medio per ciascuna città di ogni stato' ) || this.pagination !== 'Query più frequenti'"
             >
                 
                 <div class="titoloSezione calendar">
@@ -172,7 +175,8 @@
     </div>
 
 
-    <div class="divResponse">
+    <!--CHART GRAFICO A TORTA PERCENTUALE CONTAGI PER CONTEE DI UNO STATO (SECONDA QUERY)-->
+    <div class="divResponse" *ngIf="this.queryStatus=='completata' && !this.noAnswer && this.pagination=='Query più frequenti' && this?.queryFrequenti?.tipo_query == 'Percentuale casi Covid-19 in base alle contee di uno stato'">
         <app-chart-pie-percentuali-contee-stato
             [answer]="this.answer" 
             [projMap]="this.projMapQueryFrequenti"
@@ -187,6 +191,15 @@
         [projMap]="this.projMapQueryFrequenti"
         >
         </app-chart-qoa-state>
+    </div>
+
+    <!--CHART IN RISPOSTA A QUERY PIU' FREQUENTI : Visualizza andamento QoA medio per ogni città di uno stato-->
+    <div class="divResponse" *ngIf="this.queryStatus=='completata' && !this.noAnswer && this.pagination=='Query più frequenti' && this?.queryFrequenti?.tipo_query == 'Visualizza valore QoA medio per ciascuna città di ogni stato'">
+        <app-chart-qoa-medio-city-state
+        [answer]="this?.answer" 
+        [projMap]="this?.projMapQueryFrequenti"
+        >
+        </app-chart-qoa-medio-city-state>
     </div>
 
     <!--CHART IN RISPOSTA A QUERY PIU' FREQUENTI : Visualizza andamento QoA pre/post lockdown-->

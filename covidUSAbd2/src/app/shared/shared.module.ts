@@ -16,6 +16,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
 import { ChartReportQoaLockdownComponent } from './chart-report-qoa-lockdown/chart-report-qoa-lockdown.component';
 import { ChartAndamentoContagiComponent } from './chart-andamento-contagi/chart-andamento-contagi.component';
 import { ChartPiePercentualiConteeStatoComponent } from './chart-pie-percentuali-contee-stato/chart-pie-percentuali-contee-stato.component';
+import { ChartQoaMedioCityStateComponent } from './chart-qoa-medio-city-state/chart-qoa-medio-city-state.component';
 
 
 
@@ -32,7 +33,8 @@ import { ChartPiePercentualiConteeStatoComponent } from './chart-pie-percentuali
     ChartQoaStateComponent,
     ChartReportQoaLockdownComponent,
     ChartAndamentoContagiComponent,
-    ChartPiePercentualiConteeStatoComponent
+    ChartPiePercentualiConteeStatoComponent,
+    ChartQoaMedioCityStateComponent
   ],
   imports: [
     CommonModule,
@@ -54,7 +56,8 @@ import { ChartPiePercentualiConteeStatoComponent } from './chart-pie-percentuali
     ChartQoaStateComponent,
     ChartReportQoaLockdownComponent,
     ChartAndamentoContagiComponent,
-    ChartPiePercentualiConteeStatoComponent
+    ChartPiePercentualiConteeStatoComponent,
+    ChartQoaMedioCityStateComponent
   ]
 })
 export class SharedModule { }
