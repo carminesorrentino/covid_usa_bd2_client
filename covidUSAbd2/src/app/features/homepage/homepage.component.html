@@ -202,7 +202,7 @@
     </div>
 
     <!--CHART IN RISPOSTA A QUERY PIU' FREQUENTI : REPORT QoA PER CITTA-->
-    <div class="divResponse">
+    <div class="divResponse" *ngIf="this.queryStatus=='completata' && !this.noAnswer && this.pagination=='Query più frequenti' && this?.queryFrequenti?.tipo_query == 'Report QoA in base alla città'">
         <app-chart-qoa-city
         [answer]="this.answer" 
         [projMap]="this.projMapQueryFrequenti"
